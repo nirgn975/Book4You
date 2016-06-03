@@ -1,10 +1,8 @@
 import {Component} from '@angular/core';
 import {Router, RouteConfig, ROUTER_DIRECTIVES} from '@angular/router-deprecated';
 
-import {Home} from './components/home/home.component';
-import {PrivacyPolicy} from './components/privacy-policy/privacy-policy.component';
-import {TestYourself} from './components/test-yourself/test-yourself.component';
-import {FacebookGames} from './components/facebook-games/facebook-games.component';
+import {Home} from 'home/home.component';
+import {WishList} from 'wish-list/wish-list.component';
 
 @Component({
     selector: 'main-app',
@@ -16,9 +14,7 @@ import {FacebookGames} from './components/facebook-games/facebook-games.componen
 })
 @RouteConfig([
     { path: '/home',            component: Home,            name: 'Home', useAsDefault: true },
-    { path: '/privacy-policy',  component: PrivacyPolicy,   name: 'PrivacyPolicy' },
-    { path: '/test-yourself',   component: TestYourself,    name: 'TestYourself' },
-    { path: '/facebook-games',  component: FacebookGames,   name: 'FacebookGames' },
+    { path: '/wishlist',        component: WishList,        name: 'WishList' },
 ])
 export class MainApp {
 
