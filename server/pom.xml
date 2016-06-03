@@ -90,16 +90,48 @@
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 			<version>RELEASE</version>
 		</dependency>
+
+		<dependency>
+			<groupId>javax.inject</groupId>
+			<artifactId>javax.inject</artifactId>
+			<version>1</version>
+		</dependency>
 	</dependencies>
 	
 	<build>
 		<plugins>
 			<plugin>
+				<groupId>org.liquibase</groupId>
+				<artifactId>liquibase-maven-plugin</artifactId>
+				<version>3.1.1</version>
+				<configuration>
+					<url>${liquibase.url}</url>
+					<driver>org.postgresql.Driver</driver>
+					<username>${liquibase.username}</username>
+					<password>${liquibase.password}</password>
+					<changeLogFile>src/main/resources/migrations.xml</changeLogFile>
+					<promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
+				</configuration>
+			</plugin>
+			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
+
+		<defaultGoal>install</defaultGoal>
 	</build>
+
+	<profiles>
+		<profile>
+			<id>local</id>
+			<properties>
+				<liquibase.url>jdbc:postgresql://localhost:5432/SpringBootRestApi</liquibase.url>
+				<liquibase.username>SpringBootUser</liquibase.username>
+				<liquibase.password>SpringBootPass</liquibase.password>
+			</properties>
+		</profile>
+	</profiles>
 
 	<repositories>
 		<repository>
