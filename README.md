@@ -9,7 +9,7 @@ Book4You is a university project for [#20503 - Workshop: Advanced Programming wi
 * [Java 8](https://www.oracle.com/java/)
 * [Spring 4.x](https://spring.io/)
 * [Angular 2](https://angular.io/)
-* [webpack](https://webpack.github.io/)
+* [Angular CLI](https://github.com/angular/angular-cli)
 * [Semantic UI](http://semantic-ui.com/)
 
 
