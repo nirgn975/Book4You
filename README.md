@@ -18,10 +18,10 @@ Install the project for development.
 
 **Client side:**
 
-1. run `npm install -g webpack webpack-dev-server typings typescript` to install global dependencies.
+1. run `npm install -g angular-cli` to install angular-cli.
 2. run `npm install` to install dependencies.
-3. run `npm start` to fire up dev server.
-4. open browser at [http://localhost:3000](http://localhost:3000).
+3. run `ng serve` to fire up dev server.
+4. open browser at [http://localhost:4200](http://localhost:4200).
 
 **Server side:**
 
