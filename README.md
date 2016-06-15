@@ -18,10 +18,10 @@ Install the project for development.
 
 **Client side:**
 
-1. run `npm install -g angular-cli` to install angular-cli.
-2. run `npm install` to install dependencies.
-3. run `ng serve` to fire up dev server.
-4. open browser at [http://localhost:4200](http://localhost:4200).
+1. Run `npm install -g angular-cli` to install angular-cli.
+2. Run `npm install` to install dependencies.
+3. Run `ng serve` to fire up dev server.
+4. Open browser at [http://localhost:4200](http://localhost:4200).
 
 **Server side:**
 
@@ -30,7 +30,15 @@ Install the project for development.
 
 
 ## Tests
-Noting yet.
+
+  **Client side:**
+
+  * Run `ng test --no-watch`.
+  * Run `ng e2e`.
+
+  **Server side:**
+
+  * Not yet..
 
 
 ## License
