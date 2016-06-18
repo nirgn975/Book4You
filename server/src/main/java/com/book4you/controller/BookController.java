@@ -22,7 +22,7 @@ import java.net.URI;
      * Get all the books.
      *
      * @return
-     *  Return all the books.
+     *  All the books.
      */
     @RequestMapping(value = "/books", method = RequestMethod.GET)
     public ResponseEntity<Iterable<Book>> getAllBooks() {
@@ -38,6 +38,7 @@ import java.net.URI;
      *
      * @param book
      *  The book to be created.
+     *
      * @return
      *  The response with the uri of the newly created book.
      */
@@ -66,6 +67,7 @@ import java.net.URI;
      *
      * @param bookId
      *  The ID of the book to find.
+     *
      * @return
      *  The response with the book data.
      */
@@ -85,8 +87,9 @@ import java.net.URI;
      *  The new ook to save.
      * @param bookId
      *  The ID of the book to update.
+     *
      * @return
-     *  The status code.
+     *  The response status code.
      */
     @RequestMapping(value = "/books/{bookId}", method = RequestMethod.PUT)
     public ResponseEntity<?> updateBook(@RequestBody Book newBook, @PathVariable Long bookId) {
@@ -97,6 +100,15 @@ import java.net.URI;
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    /**
+     * Delete a book by it's ID.
+     *
+     * @param bookId
+     *  The book ID.
+     *
+     * @return
+     *  The response status code.
+     */
     @RequestMapping(value = "/books/{bookId}", method = RequestMethod.DELETE)
     public ResponseEntity<?> deleteBook(@PathVariable Long bookId) {
         // Delete the book by it's ID.
