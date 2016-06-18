@@ -26,16 +26,19 @@ Install the project for development.
 ### **Server side:**
 
 1. Install PostgreSQL (you can use [this tutorial](https://www.codefellows.org/blog/three-battle-tested-ways-to-install-postgresql))
+
 2. Create the database, and grunt the `postgres` user access
 ```
 psql postgres -c "CREATE DATABASE bookforyou"
 psql postgres -c "ALTER USER postgres WITH PASSWORD 'postgres'"
 ```
 The database name and user name will be in `/server/src/main/resources/application.properties`.
+
 3. Install the project
 ```
 mvn clean install
 ```
+
 4. Run it
 ```
 java -jar target/book4you-0.0.1-SNAPSHOT.jar
