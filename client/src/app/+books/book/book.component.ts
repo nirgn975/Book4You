@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+
+import { Book } from '../shared/book.model';
 
 @Component({
   moduleId: module.id,
@@ -6,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: 'book.component.html',
   styleUrls: ['book.component.css']
 })
+
 export class BookComponent implements OnInit {
+  @Input() book: Book;
 
   constructor() {}
 

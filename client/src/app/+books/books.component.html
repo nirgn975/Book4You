@@ -1,3 +1,7 @@
-<p>
-  books works!
-</p>
+<div class="books-category-title">
+   <h2>הפופולאריים</h2>
+</div>
+
+ <div class="ui grid">
+  <app-book *ngFor="let book of books | async" [book]="book"></app-book>
+</div>
