@@ -28,24 +28,24 @@ Install the project for development.
 1. Install PostgreSQL (you can use [this tutorial](https://www.codefellows.org/blog/three-battle-tested-ways-to-install-postgresql))
 
 2. Create the database, and grunt the `postgres` user access
-```
-psql postgres -c "CREATE DATABASE bookforyou"
-psql postgres -c "ALTER USER postgres WITH PASSWORD 'postgres'"
-```
-The database name and user name will be in `/server/src/main/resources/application.properties`.
+  ```
+  psql postgres -c "CREATE DATABASE bookforyou"
+  psql postgres -c "ALTER USER postgres WITH PASSWORD 'postgres'"
+  ```
+  The database name and user name will be in `/server/src/main/resources/application.properties`.
 
 3. Install the project
-```
-mvn clean install
-```
+  ```
+  mvn clean install
+  ```
 
 4. Run it
-```
-java -jar target/book4you-0.0.1-SNAPSHOT.jar
-```
-We take the target from the `pom.xml` file, and run it like: `target/<artifactId>-<version>.jar`.
+  ```
+  java -jar target/book4you-0.0.1-SNAPSHOT.jar
+  ```
+  We take the target from the `pom.xml` file, and run it like: `target/<artifactId>-<version>.jar`.
 
-Then go to [http://localhost:8080](http://localhost:8080) (the server default port can be changed in `/server/src/main/resources/application.properties` at `server.port` argument).
+  Then go to [http://localhost:8080](http://localhost:8080) (the server default port can be changed in `/server/src/main/resources/application.properties` at `server.port` argument).
 
 ## Tests
 
