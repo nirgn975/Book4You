@@ -1,3 +1,16 @@
-<p>
-  book works!
-</p>
+<div class="ui card four wide column">
+  <div class="image">
+    <img src="{{ book.cover_image }}">
+  </div>
+  <div class="content">
+    <h3>{{ book.title }}</h3>
+    <span class="author">{{ book.author }}</span>
+    <div class="meta price">
+      <i class="fa fa-ils" aria-hidden="true"></i> {{ book.price }}
+    </div>
+    <div class="action-buttons">
+      <button class="ui violet button">רכישה</button>
+      <button class="ui blue button">קרא עוד</button>
+    </div>
+  </div>
+</div>

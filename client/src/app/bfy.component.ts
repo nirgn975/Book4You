@@ -1,20 +1,24 @@
 import { Component } from '@angular/core';
-import { CategoriesComponent } from './+categories';
 import { Routes , ROUTER_DIRECTIVES, ROUTER_PROVIDERS} from '@angular/router';
+
+import { CategoriesComponent } from './+categories';
 import { BooksComponent } from './+books';
 
 @Component({
   moduleId: module.id,
+  host: {
+    id: 'bfy'
+  },
   selector: 'bfy-app',
   templateUrl: 'bfy.component.html',
   styleUrls: ['bfy.component.css'],
-  directives: [ROUTER_DIRECTIVES],
+  directives: [ROUTER_DIRECTIVES, CategoriesComponent, BooksComponent],
   providers: [ROUTER_PROVIDERS]
 })
+
 @Routes([
-  {path: '/categories', component: CategoriesComponent},
-  {path: '/books', component: BooksComponent}
 ])
+
 export class BfyAppComponent {
   title = 'bfy works!';
 }

@@ -1,76 +1,74 @@
-{
-  "results": [
-    {
-      "id": 1,
-      "title": "אבא עשיר אבא עני",
-      "author": "רוברט קיוסאקי",
-      "price": 80,
-      "currency": "NIS",
-      "cover image": ""
-    },
-    {
-      "id": 2,
-      "title": "רומן מסוכן",
-      "author": "יניב וכטל",
-      "price": 130,
-      "currency": "NIS",
-      "cover image": ""
-    },
-    {
-      "id": 3,
-      "title": "בתול בן 40",
-      "author": "ניר גלאון",
-      "price": 80,
-      "currency": "NIS",
-      "cover image": ""
-    },
-    {
-      "id": 4,
-      "title": "אפיה מהירה",
-      "author": "אבי גלאון",
-      "price": 95,
-      "currency": "NIS",
-      "cover image": ""
-    },
-    {
-      "id": 5,
-      "title": "מטבח יווני",
-      "author": "יותם אמרגי",
-      "price": 130,
-      "currency": "NIS",
-      "cover image": ""
-    },
-    {
-      "id": 6,
-      "title": "החותם השחור",
-      "author": "שחר גלאון",
-      "price": 80,
-      "currency": "NIS",
-      "cover image": ""
-    },
-    {
-      "id": 7,
-      "title": "משולשים בצבע",
-      "author": "יניב וכטל",
-      "price": 95,
-      "currency": "NIS",
-      "cover image": ""
-    },
-    {
-      "id": 8,
-      "title": "איש החידות",
-      "author": "יותם אמרגי",
-      "price": 130,
-      "currency": "NIS",
-      "cover image": ""
-    },
-    {
-      "id": 9,
-      "title": "פיקסלים",
-      "author": "שחר גלאון",
-      "price": 80,
-      "currency": "NIS",
-      "cover image": ""
-    },
-  ]
-}
+[
+  {
+    "id": 1,
+    "title": "אבא עשיר אבא עני",
+    "author": "רוברט קיוסאקי",
+    "price": 80,
+    "currency": "NIS",
+    "cover_image": "app/data/images/1.png"
+  },
+  {
+    "id": 2,
+    "title": "רומן מסוכן",
+    "author": "יניב וכטל",
+    "price": 130,
+    "currency": "NIS",
+    "cover_image": "app/data/images/2.png"
+  },
+  {
+    "id": 3,
+    "title": "בתול בן 40",
+    "author": "ניר גלאון",
+    "price": 80,
+    "currency": "NIS",
+    "cover_image": "app/data/images/3.png"
+  },
+  {
+    "id": 4,
+    "title": "אפיה מהירה",
+    "author": "אבי גלאון",
+    "price": 95,
+    "currency": "NIS",
+    "cover_image": "app/data/images/4.png"
+  },
+  {
+    "id": 5,
+    "title": "מטבח יווני",
+    "author": "יותם אמרגי",
+    "price": 130,
+    "currency": "NIS",
+    "cover_image": "app/data/images/5.jpg"
+  },
+  {
+    "id": 6,
+    "title": "החותם השחור",
+    "author": "שחר גלאון",
+    "price": 80,
+    "currency": "NIS",
+    "cover_image": "app/data/images/6.jpg"
+  },
+  {
+    "id": 7,
+    "title": "משולשים בצבע",
+    "author": "יניב וכטל",
+    "price": 95,
+    "currency": "NIS",
+    "cover_image": "app/data/images/7.png"
+  },
+  {
+    "id": 8,
+    "title": "איש החידות",
+    "author": "יותם אמרגי",
+    "price": 130,
+    "currency": "NIS",
+    "cover_image": "app/data/images/8.png"
+  },
+  {
+    "id": 9,
+    "title": "פיקסלים",
+    "author": "שחר גלאון",
+    "price": 80,
+    "currency": "NIS",
+    "cover_image": "app/data/images/9.png"
+  }
+]
