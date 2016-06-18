@@ -3,22 +3,22 @@ import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 
-import { Book } from './book.model';
+import { Category } from './category.model';
 
 @Injectable()
-export class BookService {
+export class CategoryService {
 
   constructor(private http: Http) {}
 
-  getBooks() {
-    return this.http.get('app/data/books.json')
+  getCategories() {
+    return this.http.get('app/data/categories.json')
       .map((res: Response) => res.json())
       .do(res => console.log(res))
       .catch(this.handleError);
   }
 
-  getBook(id: number) {
-    return this.http.get('app/data/book.json')
+  getCategory(id: number) {
+    return this.http.get('app/data/category.json')
       .map((res: Response) => res.json())
       .do(res => console.log(res))
       .catch(this.handleError);
