@@ -1,6 +1,65 @@
-<h1>
-  {{title}}
-</h1>
+<header>
+  <div class="ui login modal">
+    <i class="close icon"></i>
+    <div class="header">
+      Modal Title
+    </div>
+    <div class="image content">
+      <div class="image">
+        An image can appear on left or an icon
+      </div>
+      <div class="description">
+        A description can appear on the right
+      </div>
+    </div>
+    <div class="actions">
+      <div class="ui button">Cancel</div>
+      <div class="ui button">OK</div>
+    </div>
+  </div>
+
+  <!-- The actions bar -->
+  <div id="user-actions">
+    <div class="ui container">
+      <a href="#">רשימת הקניות שלי</a>
+      <div class="ui primary login button">התחבר</div>
+    </div>
+  </div>
+
+  <!-- The main header part -->
+  <div id="main-header">
+    <div class="ui container grid">
+      <!-- Cart -->
+      <div id="cart" class="five wide column">
+        blah
+      </div>
+
+      <!-- Search input -->
+      <div id="search" class="five wide column ">
+        <div class="ui right action left icon input">
+          <div class="ui basic floating dropdown button">
+            <div class="text">This Page</div>
+            <i class="dropdown icon"></i>
+            <div class="menu">
+              <div class="item">שם ספר</div>
+              <div class="item">מחבר</div>
+            </div>
+          </div>
+          <i class="search icon"></i>
+          <input type="text" placeholder="Search">
+        </div>
+      </div>
+
+      <!-- Website logo -->
+      <img class="five wide column" src="/book4u-logo.svg" />
+    </div>
+  </div>
+
+  <!-- Hero image - parallax -->
+  <div>
+    <img id="hero-image" src="/hero-image-default.jpg" />
+  </div>
+</header>
 
 <div class="ui centered grid">
   <div class="two wide column">
@@ -10,3 +69,7 @@
     <app-books></app-books>
   </div>
 </div>
+
+<footer>
+  <p>Copyright © 2016 Book4u.com. All rights reserved</p>
+</footer>
