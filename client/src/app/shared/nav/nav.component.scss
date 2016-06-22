@@ -1,0 +1,33 @@
+header {
+  #user-actions {
+    width: 100%;
+    height: 5rem;
+    background: #223542;
+    color: #c0c0c0;
+    margin: 0;
+
+    a {
+      text-decoration: none;
+      color: #c0c0c0;
+      line-height: 5rem
+    }
+  }
+
+  #search {
+    .input-group {
+      direction: ltr;
+    }
+  }
+
+  #hero-image {
+    width: 100%;
+    height: 30rem;
+    vertical-align: top;
+    overflow-y: hidden;
+    margin: 0;
+
+    img {
+      width: 100%;
+    }
+  }
+}
