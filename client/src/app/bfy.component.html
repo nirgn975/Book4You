@@ -1,72 +1,51 @@
 <header>
-  <div class="ui login modal">
-    <i class="close icon"></i>
-    <div class="header">
-      Modal Title
-    </div>
-    <div class="image content">
-      <div class="image">
-        An image can appear on left or an icon
-      </div>
-      <div class="description">
-        A description can appear on the right
-      </div>
-    </div>
-    <div class="actions">
-      <div class="ui button">Cancel</div>
-      <div class="ui button">OK</div>
-    </div>
-  </div>
-
   <!-- The actions bar -->
-  <div id="user-actions">
-    <div class="ui container">
+  <div id="user-actions" class="row">
+    <div class="col-sm-12 col-md-10">
       <a href="#">רשימת הקניות שלי</a>
-      <div class="ui primary login button">התחבר</div>
+      <a href="#">התחבר</a>
     </div>
   </div>
 
   <!-- The main header part -->
-  <div id="main-header">
-    <div class="ui container grid">
-      <!-- Cart -->
-      <div id="cart" class="five wide column">
-        blah
-      </div>
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Website logo -->
+      <img class="col-xs-12 col-sm-offset-1 col-sm-3" src="/book4u-logo.svg" />
 
       <!-- Search input -->
-      <div id="search" class="five wide column ">
-        <div class="ui right action left icon input">
-          <div class="ui basic floating dropdown button">
-            <div class="text">This Page</div>
-            <i class="dropdown icon"></i>
-            <div class="menu">
-              <div class="item">שם ספר</div>
-              <div class="item">מחבר</div>
-            </div>
-          </div>
-          <i class="search icon"></i>
-          <input type="text" placeholder="Search">
+       <div id="search" class="col-sm-4">
+         <div class="input-group">
+           <input type="text" class="form-control" placeholder="חפש ספר / מחבר">
+           <span class="input-group-btn">
+             <button class="btn btn-default" type="button">
+               <i class="fa fa-search" aria-hidden="true"></i>
+             </button>
+           </span>
         </div>
       </div>
 
-      <!-- Website logo -->
-      <img class="five wide column" src="/book4u-logo.svg" />
+      <!-- Cart -->
+      <div class="col-sm-3">
+        blah
+      </div>
     </div>
   </div>
 
   <!-- Hero image - parallax -->
-  <div>
-    <img id="hero-image" src="/hero-image-default.jpg" />
+  <div id="hero-image" class="row">
+    <img src="/hero-image-default.jpg" />
   </div>
 </header>
 
-<div class="ui centered grid">
-  <div class="two wide column">
-    <app-categories></app-categories>
-  </div>
-  <div class="eight wide column">
-    <app-books></app-books>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-8">
+      <app-books></app-books>
+    </div>
+    <div class="col-md-2">
+      <app-categories></app-categories>
+    </div>
   </div>
 </div>
 
