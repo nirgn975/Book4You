@@ -1,12 +1,43 @@
-.ui.card.four {
-  margin: 5% 0;
+.thumbnail {
+  text-align: center;
+  margin: 1rem;
 
-  .content {
-    text-align: center;
+  .thumbnail-content {
+    span {
+      font-size: 1.8rem;
+      color: #9e9e9e;
+    }
 
     .price {
-      margin: 5%;
-      font-size: 1.5rem;
+      font-size: 1.8rem;
+      padding: 5px;
+    }
+  }
+
+  .btn-action {
+    margin: 10px;
+
+    .btn {
+      border-radius: 0;
+      padding: 10px 25px;
+      box-shadow: inset 0 -5px 0 0 rgba(0, 0, 0, .24);
+      transition: all 250ms ease;
+      border-radius: 4px;
+      color: #ffffff;
+      font-size: 1.6rem;
+
+      &.btn-purchase {
+        background-color: #37aae0;
+      }
+
+      &.btn-read-more {
+        background-color: #68bde6;
+      }
+
+      &:hover {
+        box-shadow: inset 0 -3px 0 0 rgba(0, 0, 0, .24);
+        background-color: #2d94c5;
+      }
     }
   }
 }
