@@ -1,12 +1,16 @@
-<h1>
-  {{title}}
-</h1>
+<app-nav></app-nav>
 
-<div class="ui centered grid">
-  <div class="two wide column">
-    <app-categories></app-categories>
-  </div>
-  <div class="eight wide column">
-    <app-books></app-books>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-8">
+      <app-books></app-books>
+    </div>
+    <div class="col-md-2">
+      <app-categories></app-categories>
+    </div>
   </div>
 </div>
+
+<footer>
+  <p>Copyright © 2016 Book4u.com. All rights reserved</p>
+</footer>

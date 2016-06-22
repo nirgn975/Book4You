@@ -3,6 +3,7 @@ import { Routes , ROUTER_DIRECTIVES, ROUTER_PROVIDERS} from '@angular/router';
 
 import { CategoriesComponent } from './+categories';
 import { BooksComponent } from './+books';
+import { NavComponent } from './shared/nav';
 
 @Component({
   moduleId: module.id,
@@ -12,7 +13,7 @@ import { BooksComponent } from './+books';
   selector: 'bfy-app',
   templateUrl: 'bfy.component.html',
   styleUrls: ['bfy.component.css'],
-  directives: [ROUTER_DIRECTIVES, CategoriesComponent, BooksComponent],
+  directives: [ROUTER_DIRECTIVES, NavComponent, CategoriesComponent, BooksComponent],
   providers: [ROUTER_PROVIDERS]
 })
 
