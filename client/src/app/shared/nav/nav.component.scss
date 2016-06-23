@@ -14,8 +14,15 @@ header {
   }
 
   #search {
+    margin: 1.5% 0;
+
     .input-group {
       direction: ltr;
+      width: 80%;
+
+      @media (max-width: 768px) {
+        width: 100%;
+      }
     }
   }
 
