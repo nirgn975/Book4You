@@ -1,3 +1,9 @@
+@mixin search-input {
+  font-size: 20px;
+  height: 50px;
+  direction: rtl;
+}
+
 header {
   #user-actions {
     width: 100%;
@@ -9,12 +15,13 @@ header {
     a {
       text-decoration: none;
       color: #c0c0c0;
-      line-height: 5rem
+      line-height: 5rem;
+      margin-left: 3rem;
     }
   }
 
   #search {
-    margin: 1.5% 0;
+    margin: 1.2% 0;
 
     .input-group {
       direction: ltr;
@@ -22,6 +29,28 @@ header {
 
       @media (max-width: 768px) {
         width: 100%;
+      }
+
+      input {
+        @include search-input;
+      }
+
+
+      .btn {
+        &.btn-default {
+          @include search-input;
+          width: 50px;
+          background-color: #279faf;
+          background-image: none;
+          color: #ffffff;
+          box-shadow: inset 0 -4px 0 0 #1f8694;
+          transition: all 350ms ease;
+
+          &:hover {
+            background-color: #1f8b99;
+            box-shadow: inset 0 -1px 0 0 #1f8694;
+          }
+        }
       }
     }
   }
