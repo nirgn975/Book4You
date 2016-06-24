@@ -34,6 +34,7 @@ const barrels: string[] = [
   'app/+books',
   'app/+books/book',
   'app/+books/book-details',
+  'app/shared/nav',
   /** @cli-barrel */
 ];
 
