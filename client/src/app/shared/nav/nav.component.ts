@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   moduleId: module.id,
@@ -7,9 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['nav.component.css']
 })
 
-export class NavComponent implements OnInit {
+export class NavComponent {
+
   constructor() {}
 
-  ngOnInit() {
-  }
 }
