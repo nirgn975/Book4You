@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { BookComponent } from './book/book.component';
 import { BookService } from './shared/book.service';
@@ -14,17 +15,25 @@ import { Book } from './shared/book.model';
   providers: [BookService]
 })
 
-export class BooksComponent implements OnInit {
+export class BooksComponent implements OnInit, OnDestroy {
+  @Input() categoryName;
   books: Observable<Book[]>;
   errorMessage: String;
+  private sub: any;
 
-  constructor(private bookService: BookService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private bookService: BookService) {}
 
   ngOnInit() {
-    this.getBooks();
+    this.sub = this.route.params.subscribe(params => {
+      let id = +params['id'];
+      this.books = this.bookService.getBooks(id);
+    });
   }
 
-  getBooks() {
-    this.books = this.bookService.getBooks();
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 }

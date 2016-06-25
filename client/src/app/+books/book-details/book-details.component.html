@@ -1,3 +1,20 @@
-<p>
-  book-details works!
-</p>
+<div class="col-sm-12 col-md-8 col-lg-9 thumbnail pull-right">
+  <div *ngIf="book">
+    <div class="col-sm-8">
+      <h2>{{ book.title }}</h2>
+      <span>ספר מאת: {{ book.author }}</span>
+      <p>{{ book.description }}</p>
+    </div>
+
+    <div class="col-sm-4 cta">
+      <img src="{{ book.cover_image }}">
+      <div class="price">
+        <i class="fa fa-ils" aria-hidden="true"></i> {{ book.price }}
+      </div>
+      <button class="btn btn-purchase">
+        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+        רכישה
+      </button>
+    </div>
+  </div>
+</div>

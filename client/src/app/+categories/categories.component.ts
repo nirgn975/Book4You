@@ -25,6 +25,6 @@ export class CategoriesComponent implements OnInit {
   }
 
   getCategories() {
-    this.categories = this.categoryService.getCategories()
+    this.categories = this.categoryService.getCategories();
   }
 }
