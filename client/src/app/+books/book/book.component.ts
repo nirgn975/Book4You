@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { Router, ROUTER_DIRECTIVES } from '@angular/router';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import { Router, ActivatedRoute, ROUTER_DIRECTIVES } from '@angular/router';
 
 import { Book } from '../shared/book.model';
 
@@ -11,13 +11,28 @@ import { Book } from '../shared/book.model';
   directives: [ROUTER_DIRECTIVES]
 })
 
-export class BookComponent {
+export class BookComponent implements OnInit, OnDestroy {
   @Input() book: Book;
+  private sub: any;
+  private categoryId: number;
 
-  constructor(private router: Router) {}
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
+
+  ngOnInit() {
+    this.sub = this.route.params.subscribe(params => {
+      this.categoryId = +params['categoryId'];
+    });
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
+  }
 
   onSelect(id: number) {
-    this.router.navigate(['/book', id]);
+    this.router.navigate(['/category/' + this.categoryId + '/book', id]);
   }
 
 }

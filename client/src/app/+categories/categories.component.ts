@@ -25,10 +25,6 @@ export class CategoriesComponent implements OnInit {
     private categoryService: CategoryService) {}
 
   ngOnInit() {
-    this.getCategories();
-  }
-
-  getCategories() {
     this.categories = this.categoryService.getCategories();
   }
 
@@ -36,8 +32,8 @@ export class CategoriesComponent implements OnInit {
     return category.id === this.selectedCategory;
   }
 
-  onSelect(id: number) {
-    this.selectedCategory = id;
-    this.router.navigate(['/category', id]);
+  onSelect(categoryId: number) {
+    this.selectedCategory = categoryId;
+    this.router.navigate(['/category', categoryId]);
   }
 }
