@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import { ROUTER_DIRECTIVES, Router } from '@angular/router';
 
-import { CategoryComponent } from './category/category.component';
 import { CategoryService } from './shared/category.service';
 import { Category } from './shared/category.model';
 
@@ -10,15 +10,19 @@ import { Category } from './shared/category.model';
   selector: 'app-categories',
   templateUrl: 'categories.component.html',
   styleUrls: ['categories.component.css'],
-  directives: [CategoryComponent],
+  directives: [ROUTER_DIRECTIVES],
   providers: [CategoryService]
 })
 
 export class CategoriesComponent implements OnInit {
   categories: Observable<Category[]>;
-  errorMessage: String;
 
-  constructor(private categoryService: CategoryService) {}
+  private selectedCategory: number = 1;
+  private sub: any;
+
+  constructor(
+    private router: Router,
+    private categoryService: CategoryService) {}
 
   ngOnInit() {
     this.getCategories();
@@ -26,5 +30,14 @@ export class CategoriesComponent implements OnInit {
 
   getCategories() {
     this.categories = this.categoryService.getCategories();
+  }
+
+  isSelected(category: Category) {
+    return category.id === this.selectedCategory;
+  }
+
+  onSelect(id: number) {
+    this.selectedCategory = id;
+    this.router.navigate(['/category', id]);
   }
 }

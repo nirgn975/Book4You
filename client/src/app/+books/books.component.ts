@@ -16,7 +16,8 @@ import { Book } from './shared/book.model';
 })
 
 export class BooksComponent implements OnInit, OnDestroy {
-  @Input() categoryName;
+  @Input() categoryName: String;
+
   books: Observable<Book[]>;
   errorMessage: String;
   private sub: any;

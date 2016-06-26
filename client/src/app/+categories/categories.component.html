@@ -2,5 +2,10 @@
   <div id="category-title">
     <h2>קטגוריות</h2>
   </div>
-  <app-category *ngFor="let category of categories | async" [category]="category"></app-category>
+
+  <div class="list" *ngFor="let category of categories | async">
+    <a class="item" [class.selected]="isSelected(category)" (click)="onSelect(category.id)">
+      <div class="header">{{ category.name }}</div>
+    </a>
+  </div>
 </div>

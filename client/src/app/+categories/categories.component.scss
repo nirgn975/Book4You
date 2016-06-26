@@ -1,3 +1,9 @@
+@mixin hover {
+  border-right: 3px solid #279faf;
+  background-color: #fcfcfc;
+  color: #279faf;
+}
+
 #categories {
   background-color: #ffffff;
   text-align: center;
@@ -8,5 +14,26 @@
     box-shadow: inset 0 -5px 0 0 #1c8694;
     color: #ffffff;
     padding: 2%;
+  }
+}
+
+.list {
+  .item {
+    text-align: right;
+    border: 1px solid #e4e4e4;
+    border-radius: 0;
+    padding: 1rem;
+    display: block;
+
+    &:hover, &.selected {
+      @include hover;
+    }
+
+    .header {
+      display: inline-block;
+      font-size: 1.8rem;
+      font-weight: 400;
+      padding: 0.5rem;
+    }
   }
 }
