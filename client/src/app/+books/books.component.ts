@@ -10,7 +10,6 @@ import { Book } from './shared/book.model';
   moduleId: module.id,
   selector: 'app-books',
   templateUrl: 'books.component.html',
-  styleUrls: ['books.component.css'],
   directives: [BookComponent],
   providers: [BookService]
 })
