@@ -16,6 +16,4 @@ import { NavComponent } from './shared/nav';
   directives: [ROUTER_DIRECTIVES, NavComponent, CategoriesComponent, BooksComponent]
 })
 
-export class BfyAppComponent {
-  title = 'bfy works!';
-}
+export class BfyAppComponent {}
