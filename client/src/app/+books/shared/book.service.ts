@@ -10,16 +10,16 @@ export class BookService {
 
   constructor(private http: Http) {}
 
-  getBooks() {
-    return this.http.get('app/data/books.json')
-      .map((res: Response) => res.json())
+  getBooks(categoryId: number) {
+    return this.http.get('app/data/books' + categoryId +'.json')
+      .map((res: Response) => <Book[]>res.json())
       .do(res => console.log(res))
       .catch(this.handleError);
   }
 
   getBook(id: number) {
-    return this.http.get('app/data/book.json')
-      .map((res: Response) => res.json())
+    return this.http.get('app/data/book' + id + '.json')
+      .map((res: Response) => <Book>res.json()[0])
       .do(res => console.log(res))
       .catch(this.handleError);
   }
