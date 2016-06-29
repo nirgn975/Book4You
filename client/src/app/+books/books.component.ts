@@ -12,6 +12,4 @@ import { BooksListComponent } from './books-list/books-list.component';
   providers: [BookService]
 })
 
-export class BooksComponent {
-
-}
+export class BooksComponent {}

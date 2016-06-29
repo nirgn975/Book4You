@@ -18,8 +18,7 @@ export class BookComponent implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router
-  ) {}
+    private router: Router) {}
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
@@ -34,5 +33,4 @@ export class BookComponent implements OnInit, OnDestroy {
   onSelect(id: number) {
     this.router.navigate(['/category/' + this.categoryId + '/book', id]);
   }
-
 }

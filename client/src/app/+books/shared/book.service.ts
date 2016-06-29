@@ -17,8 +17,8 @@ export class BookService {
       .catch(this.handleError);
   }
 
-  getBook(id: number) {
-    return this.http.get('app/data/book' + id + '.json')
+  getBook(bookId: number) {
+    return this.http.get('app/data/book' + bookId + '.json')
       .map((res: Response) => <Book>res.json()[0])
       .do(res => console.log(res))
       .catch(this.handleError);
