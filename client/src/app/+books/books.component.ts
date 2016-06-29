@@ -1,30 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Component } from '@angular/core';
+import { ROUTER_DIRECTIVES } from '@angular/router';
 
-import { BookComponent } from './book/book.component';
 import { BookService } from './shared/book.service';
-import { Book } from './shared/book.model';
+import { BooksListComponent } from './books-list/books-list.component';
 
 @Component({
   moduleId: module.id,
   selector: 'app-books',
-  templateUrl: 'books.component.html',
-  styleUrls: ['books.component.css'],
-  directives: [BookComponent],
+  template: `<router-outlet></router-outlet>`,
+  directives: [ROUTER_DIRECTIVES],
   providers: [BookService]
 })
 
-export class BooksComponent implements OnInit {
-  books: Observable<Book[]>;
-  errorMessage: String;
+export class BooksComponent {
 
-  constructor(private bookService: BookService) {}
-
-  ngOnInit() {
-    this.getBooks();
-  }
-
-  getBooks() {
-    this.books = this.bookService.getBooks();
-  }
 }
