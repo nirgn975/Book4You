@@ -7,6 +7,12 @@ const map: any = {
 
 /** User packages configuration. */
 const packages: any = {
+  'moment':{
+    format: 'cjs'
+  },
+  'ng2-bootstrap':{
+    format: 'cjs'
+  }
 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -52,7 +58,9 @@ System.config({
   map: {
     '@angular': 'vendor/@angular',
     'rxjs': 'vendor/rxjs',
-    'main': 'main.js'
+    'main': 'main.js',
+    'moment': 'vendor/moment/moment.js',
+    'ng2-bootstrap': 'vendor/ng2-bootstrap'
   },
   packages: cliSystemConfigPackages
 });
