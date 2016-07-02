@@ -1,9 +1,6 @@
-package com.book4you.repository;
+package com.book4you.category;
 
-import com.book4you.model.Category;
 import org.springframework.data.repository.CrudRepository;
 
-
 public interface CategoryRepository extends CrudRepository<Category, Long> {
-
 }
