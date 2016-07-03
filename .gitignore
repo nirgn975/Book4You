@@ -132,8 +132,8 @@ hs_err_pid*
 
 
 ### Spring ###
-.mvn
 target
+server/build/
 
 
 ### Angular 2 ###
