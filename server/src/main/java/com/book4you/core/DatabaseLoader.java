@@ -25,46 +25,35 @@ public class DatabaseLoader implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-//        Category[] dummyCategories = {
-//                new Category("c_first"),
-//                new Category("c_second"),
-//                new Category("c_third")
-//        };
-//
-//        Book[][] dummyBooks = {
-//                {
-//                    new Book("1", "2", "3", 80),
-//                    new Book("4", "5", "6", 120)
-//                },
-//                {
-//                    new Book("7", "8", "9", 75),
-//                    new Book("10", "11", "12", 92),
-//                    new Book("13", "14", "15", 25)
-//                },
-//        };
-//
-//        // Save the data.
-//        int i = 1;
-//        for (Category c: dummyCategories) {
-//            for (Book b: dummyBooks[i]) {
-//                c.addBook(b);
-//            }
-//            i++;
-//            categories.save(c);
-//        }
+        Category[] dummyCategories = {
+                new Category("c_first"),
+                new Category("c_second"),
+                new Category("c_third")
+        };
 
-        // Create category and book.
-        Category category = new Category("populars");
-        Book firstBook = new Book("1", "2", "3", 80);
-        Book secondBook = new Book("4", "5", "6", 90);
-
-        // Book is link to the category 'populars'
-        category.addBook(firstBook);
-        category.addBook(secondBook);
+        Book[][] dummyBooks = {
+                {
+                        new Book("1", "2", "3", 80),
+                        new Book("4", "5", "6", 120)
+                },
+                {
+                        new Book("7", "8", "9", 75),
+                        new Book("10", "11", "12", 92),
+                        new Book("13", "14", "15", 25)
+                },
+                {
+                        new Book("16", "17", "18", 62)
+                }
+        };
 
         // Save the data.
-        categories.save(category);
-        books.save(firstBook);
-        books.save(secondBook);
+        int i = 0;
+        for (Category c: dummyCategories) {
+            for (Book b: dummyBooks[i]) {
+                c.addBook(b);
+            }
+            i++;
+            categories.save(c);
+        }
     }
 }

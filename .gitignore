@@ -136,6 +136,13 @@ hs_err_pid*
 target
 
 
+### Gradle ###
+.gradle
+build/
+gradle-app.setting
+.gradletasknamecache
+
+
 ### Angular 2 ###
 client/src/**/*.js
 client/src/**/*.js.map
