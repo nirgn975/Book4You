@@ -10,7 +10,6 @@ Book4You is a university project for [#20503 - Workshop: Advanced Programming wi
 * [Spring 1.3.5](https://spring.io/)
 * [Angular 2](https://angular.io/)
 * [Angular CLI](https://github.com/angular/angular-cli)
-* [ng2-bootstrap](http://valor-software.com/ng2-bootstrap/)
 
 
 ## Installation
