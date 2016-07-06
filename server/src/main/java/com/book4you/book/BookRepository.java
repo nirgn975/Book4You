@@ -1,8 +1,6 @@
-package com.book4you.repository;
+package com.book4you.book;
 
-import com.book4you.model.Book;
 import org.springframework.data.repository.CrudRepository;
 
 public interface BookRepository extends CrudRepository<Book, Long> {
-
 }

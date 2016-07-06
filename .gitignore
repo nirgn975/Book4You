@@ -132,8 +132,15 @@ hs_err_pid*
 
 
 ### Spring ###
-.mvn
 target
+server/build/
+
+
+### Gradle ###
+.gradle
+build/
+gradle-app.setting
+.gradletasknamecache
 
 
 ### Angular 2 ###
