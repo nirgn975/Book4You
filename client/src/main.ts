@@ -3,7 +3,7 @@ import { enableProdMode } from '@angular/core';
 import { HTTP_PROVIDERS } from '@angular/http';
 
 import { BfyAppComponent, environment } from './app/';
-import { APP_ROUTER_PROVIDERS } from './app/app.routes';
+import { APP_ROUTER_PROVIDERS } from './app/bfy.routes';
 
 if (environment.production) {
   enableProdMode();
