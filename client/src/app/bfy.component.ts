@@ -17,5 +17,4 @@ import { NavComponent } from './shared/nav';
 })
 
 export class BfyAppComponent {
-  title = 'bfy works!';
 }
