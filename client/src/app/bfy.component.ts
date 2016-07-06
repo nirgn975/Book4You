@@ -13,7 +13,7 @@ import { NavComponent } from './shared/nav';
   selector: 'bfy-app',
   templateUrl: 'bfy.component.html',
   styleUrls: ['bfy.component.css'],
-  directives: [ROUTER_DIRECTIVES, NavComponent, CategoriesComponent, BooksComponent],
+  directives: [ROUTER_DIRECTIVES, NavComponent, CategoriesComponent, BooksComponent]
 })
 
 export class BfyAppComponent {
