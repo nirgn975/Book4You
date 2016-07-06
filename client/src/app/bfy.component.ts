@@ -1,4 +1,4 @@
-import { Component, ViewContainerRef } from '@angular/core';
+import { Component } from '@angular/core';
 import { ROUTER_DIRECTIVES } from '@angular/router';
 
 import { CategoriesComponent } from './categories';
@@ -14,13 +14,7 @@ import { NavComponent } from './shared/nav';
   templateUrl: 'bfy.component.html',
   styleUrls: ['bfy.component.css'],
   directives: [ROUTER_DIRECTIVES, NavComponent, CategoriesComponent, BooksComponent],
-  providers: [ViewContainerRef]
 })
 
 export class BfyAppComponent {
-  public viewContainerRef: ViewContainerRef;
-
-  public constructor(viewContainerRef: ViewContainerRef) {
-    this.viewContainerRef = viewContainerRef;
-  }
 }
