@@ -26,15 +26,68 @@ public class DatabaseLoader implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
         Category[] dummyCategories = {
-                new Category("c_first"),
-                new Category("c_second"),
-                new Category("c_third")
+                new Category("הפופולאריים"),
+                new Category("מתח"),
+                new Category("הדרכה ופנאי"),
+                new Category("ספרי ביכורים"),
+                new Category("מדע ופנטזיה"),
+                new Category("שירה"),
+                new Category("נוער"),
+                new Category("רומן ושירה"),
+                new Category("יהדות"),
+                new Category("אימה"),
+                new Category("ילדים"),
+                new Category("לימוד"),
+                new Category("הרפתקאות")
         };
 
         Book[][] dummyBooks = {
                 {
-                        new Book("1", "2", "3", 80),
-                        new Book("4", "5", "6", 120)
+                        new Book("7", "8", "9", 75),
+                        new Book("10", "11", "12", 92),
+                        new Book("13", "14", "15", 25)
+                },
+                {
+                        new Book("7", "8", "9", 75),
+                        new Book("The Girl on the train",
+                                "Paula Hawkins",
+                                "the girl on the train",
+                                59)
+                },
+                {
+                        new Book("7", "8", "9", 75),
+                },
+                {
+                        new Book("7", "8", "9", 75),
+                        new Book("10", "11", "12", 92),
+                        new Book("13", "14", "15", 25)
+                },
+                {
+                        new Book("16", "17", "18", 62)
+                },
+                {
+                        new Book("7", "8", "9", 75),
+                        new Book("10", "11", "12", 92),
+                        new Book("13", "14", "15", 25)
+                },
+                {
+                        new Book("16", "17", "18", 62)
+                },
+                {
+                        new Book("7", "8", "9", 75),
+                        new Book("10", "11", "12", 92),
+                        new Book("13", "14", "15", 25)
+                },
+                {
+                        new Book("16", "17", "18", 62)
+                },
+                {
+                        new Book("7", "8", "9", 75),
+                        new Book("10", "11", "12", 92),
+                        new Book("13", "14", "15", 25)
+                },
+                {
+                        new Book("16", "17", "18", 62)
                 },
                 {
                         new Book("7", "8", "9", 75),

@@ -24,8 +24,6 @@ dependencies {
     compile 'org.springframework.boot:spring-boot-starter-data-jpa'
     // https://mvnrepository.com/artifact/postgresql/postgresql
     compile group: 'postgresql', name: 'postgresql', version: '9.1-901-1.jdbc4'
-
-
-//    compile 'com.h2database:h2'
+//    compile 'javax.inject:javax.inject:1'
     testCompile group: 'junit', name: 'junit', version: '4.11'
 }
