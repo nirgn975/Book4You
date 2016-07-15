@@ -4,7 +4,7 @@
   </div>
 
   <div class="list" *ngFor="let category of categories | async">
-    <a class="item" [class.selected]="isSelected(category)" (click)="onSelect(category.id)">
+    <a class="item" [class.selected]="isSelected(category)" (click)="onSelect(category)">
       <div class="header">{{ category.name }}</div>
     </a>
   </div>

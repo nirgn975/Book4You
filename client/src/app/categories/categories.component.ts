@@ -17,7 +17,7 @@ import { Category } from './shared/category.model';
 export class CategoriesComponent implements OnInit {
   categories: Observable<Category[]>;
 
-  private selectedCategory: number = 1;
+  private selectedCategory: number;
   private sub: any;
 
   constructor(
@@ -26,14 +26,16 @@ export class CategoriesComponent implements OnInit {
 
   ngOnInit() {
     this.categories = this.categoryService.getCategories();
+    this.selectedCategory = 1;
   }
 
   isSelected(category: Category) {
     return category.id === this.selectedCategory;
   }
 
-  onSelect(categoryId: number) {
-    this.selectedCategory = categoryId;
-    this.router.navigate(['/category', categoryId]);
+  onSelect(category: Category) {
+    let categoryBooks = category['_links'].books.href;
+    let myUrl = categoryBooks.split("/").slice(-3).join("/");
+    this.router.navigate(['/' + myUrl]);
   }
 }
