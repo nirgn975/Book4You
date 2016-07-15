@@ -13,14 +13,12 @@ export class CategoryService {
   getCategories() {
     return this.http.get('http://localhost:8080/api/v1/categories')
       .map((res: Response) => res.json()._embedded.categories)
-      // .do(res => console.log(res))
       .catch(this.handleError);
   }
 
   getCategory(categoryId: number) {
     return this.http.get('http://localhost:8080/api/v1/categories/' + categoryId)
       .map((res: Response) => res.json())
-      // .do(res => console.log(res))
       .catch(this.handleError);
   }
 

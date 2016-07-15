@@ -32,7 +32,6 @@ export class BookComponent implements OnInit, OnDestroy {
 
   onSelect(book: Book) {
     let bookId = book['_links'].self.href.split("/").slice(-1);
-    console.log(bookId);
     this.router.navigate(['/books/' + bookId]);
   }
 }

@@ -13,14 +13,12 @@ export class BookService {
   getBooks(categoryId: number) {
     return this.http.get('http://localhost:8080/api/v1/categories/' + categoryId + '/books')
       .map((res: Response) => <Book[]>res.json()._embedded.books)
-      // .do(res => console.log(res))
       .catch(this.handleError);
   }
 
   getBook(bookId: number) {
     return this.http.get('http://localhost:8080/api/v1/books/' + bookId)
       .map((res: Response) => <Book>res.json())
-      // .do(res => console.log(res))
       .catch(this.handleError);
   }
 

@@ -35,7 +35,7 @@ export class CategoriesComponent implements OnInit {
 
   onSelect(category: Category) {
     let categoryBooks = category['_links'].books.href;
-    let myUrl = categoryBooks.split("/").slice(-3).join("/");
-    this.router.navigate(['/' + myUrl]);
+    let categoryUrl = categoryBooks.split("/").slice(-3).join("/");
+    this.router.navigate(['/' + categoryUrl]);
   }
 }
