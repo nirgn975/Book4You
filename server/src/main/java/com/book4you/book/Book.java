@@ -5,11 +5,14 @@ import com.book4you.core.BaseEntity;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Book extends BaseEntity {
     private String title;
     private String author;
+
+    @Size(max = 5000)
     private String description;
     private int price;
     private String picture;
