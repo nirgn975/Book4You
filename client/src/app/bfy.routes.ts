@@ -6,7 +6,7 @@ export const routes: RouterConfig = [
   ...BooksRoutes,
   {
     path: '',
-    redirectTo: '/category/1',
+    redirectTo: '/categories/1/books',
     terminal: true
   }
 ];

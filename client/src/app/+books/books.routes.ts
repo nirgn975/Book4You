@@ -6,11 +6,14 @@ import { BookDetailsComponent }  from './book-details/book-details.component';
 
 export const BooksRoutes: RouterConfig = [
   {
-    path: 'category',
+    path: 'categories',
     component: BooksComponent,
     children: [
-      { path: ':categoryId', component: BooksListComponent },
-      { path: ':categoryId/book/:bookId', component: BookDetailsComponent },
+      { path: ':categoryId/books', component: BooksListComponent },
     ]
-  }
+  },
+  {
+    path: 'books/:bookId',
+    component: BookDetailsComponent
+  },
 ];

@@ -11,16 +11,14 @@ export class CategoryService {
   constructor(private http: Http) {}
 
   getCategories() {
-    return this.http.get('app/data/categories.json')
-      .map((res: Response) => res.json())
-      .do(res => console.log(res))
+    return this.http.get('http://localhost:8080/api/v1/categories')
+      .map((res: Response) => res.json()._embedded.categories)
       .catch(this.handleError);
   }
 
-  getCategory(id: number) {
-    return this.http.get('app/data/category.json')
+  getCategory(categoryId: number) {
+    return this.http.get('http://localhost:8080/api/v1/categories/' + categoryId)
       .map((res: Response) => res.json())
-      .do(res => console.log(res))
       .catch(this.handleError);
   }
 
