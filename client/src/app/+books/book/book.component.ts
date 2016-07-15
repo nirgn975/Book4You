@@ -30,7 +30,9 @@ export class BookComponent implements OnInit, OnDestroy {
     this.sub.unsubscribe();
   }
 
-  onSelect(id: number) {
-    this.router.navigate(['/category/' + this.categoryId + '/book', id]);
+  onSelect(book: Book) {
+    let bookId = book['_links'].self.href.split("/").slice(-1);
+    console.log(bookId);
+    this.router.navigate(['/books/' + bookId]);
   }
 }
