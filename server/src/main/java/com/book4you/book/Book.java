@@ -27,7 +27,7 @@ public class Book extends BaseEntity {
     @Min(1)
     @Max(1000)
     private int price;
-    
+
     private String picture;
 
     @ManyToOne
