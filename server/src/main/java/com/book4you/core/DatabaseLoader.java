@@ -4,23 +4,24 @@ import com.book4you.book.Book;
 import com.book4you.book.BookRepository;
 import com.book4you.category.Category;
 import com.book4you.category.CategoryRepository;
-import org.hibernate.mapping.List;
+import com.book4you.user.User;
+import com.book4you.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-
 @Component
 public class DatabaseLoader implements ApplicationRunner {
     private final BookRepository books;
     private final CategoryRepository categories;
+    private final UserRepository users;
 
     @Autowired
-    public DatabaseLoader(BookRepository books, CategoryRepository category) {
+    public DatabaseLoader(BookRepository books, CategoryRepository category, UserRepository users) {
         this.books = books;
         this.categories = category;
+        this.users = users;
     }
 
     @Override
@@ -241,6 +242,15 @@ public class DatabaseLoader implements ApplicationRunner {
             }
             i++;
             categories.save(c);
+        }
+
+        User[] dummyUsers = {
+                new User("nir", "galon", "nirgn", "password", new String[] {"ROLE_USER", "ROLE_ADMIN"})
+        };
+
+        // Save the data.
+        for (User u: dummyUsers) {
+            users.save(u);
         }
     }
 }
