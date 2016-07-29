@@ -6,6 +6,8 @@ import { BooksComponent } from './books/books.component';
 import { BooksListComponent } from './books/books-list/books-list.component';
 import { BookDetailsComponent }  from './books/book-details/book-details.component';
 
+import { AddCategoryComponent }  from './add-category/add-category.component';
+
 export const MainContentRoutes: RouterConfig = [
   {
     path: 'main-content',
@@ -24,7 +26,11 @@ export const MainContentRoutes: RouterConfig = [
       {
         path: 'books/:bookId',
         component: BookDetailsComponent
-      }
+      },
+      {
+        path: 'addCategory',
+        component: AddCategoryComponent
+      },
     ]
   },
 ];
