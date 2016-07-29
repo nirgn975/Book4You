@@ -1,6 +1,6 @@
 import { provideRouter, RouterConfig } from '@angular/router';
 
-import { BooksRoutes } from './+books/books.routes';
+import { BooksRoutes } from './books/books.routes';
 
 export const routes: RouterConfig = [
   ...BooksRoutes,
