@@ -12,5 +12,5 @@ public interface BookRepository extends CrudRepository<Book, Long> {
     @Override
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     void delete(@Param("id") Long id);
-    
+
 }
