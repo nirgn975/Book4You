@@ -1,20 +1,23 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import { Router, ActivatedRoute } from '@angular/router';
 
+import { BookComponent } from '../book/book.component';
 import { BookService } from '../shared/book.service';
 import { Book } from '../shared/book.model';
 
 @Component({
   moduleId: module.id,
-  selector: 'app-book-details',
-  templateUrl: 'book-details.component.html',
-  styleUrls: ['book-details.component.css'],
+  selector: 'bfy-books-list',
+  templateUrl: 'books-list.component.html',
+  directives: [BookComponent],
   providers: [BookService]
 })
 
-export class BookDetailsComponent implements OnInit, OnDestroy {
-  book: Observable<Book>;
+export class BooksListComponent implements OnInit, OnDestroy {
+  @Input() categoryName: String;
+
+  books: Observable<Book[]>;
   errorMessage: String;
   private sub: any;
 
@@ -25,8 +28,8 @@ export class BookDetailsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
-      let id = +params['bookId'];
-      this.bookService.getBook(id).subscribe(res => this.book = res);
+      let id = +params['categoryId'];
+      this.books = this.bookService.getBooks(id);
     });
   }
 

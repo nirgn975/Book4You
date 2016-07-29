@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { ROUTER_DIRECTIVES } from '@angular/router';
 
-import { CategoriesComponent } from './categories';
-import { BooksComponent } from './books';
+import { MainContentComponent } from './main-content';
 import { NavComponent } from './shared/nav';
 
 @Component({
@@ -13,7 +12,7 @@ import { NavComponent } from './shared/nav';
   selector: 'bfy-app',
   templateUrl: 'bfy.component.html',
   styleUrls: ['bfy.component.css'],
-  directives: [ROUTER_DIRECTIVES, NavComponent, CategoriesComponent, BooksComponent]
+  directives: [ROUTER_DIRECTIVES, NavComponent, MainContentComponent]
 })
 
 export class BfyAppComponent {

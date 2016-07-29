@@ -30,11 +30,12 @@ const barrels: string[] = [
   'app',
   'app/shared',
   'app/shared/nav',
-  'app/categories',
-  'app/books',
-  'app/books/book',
-  'app/books/book-details',
-  'app/books/books-list',
+  'app/main-content/categories',
+  'app/main-content/books',
+  'app/main-content/books/book',
+  'app/main-content/books/book-details',
+  'app/main-content/books/books-list',
+  'app/main-content',
   /** @cli-barrel */
 ];
 

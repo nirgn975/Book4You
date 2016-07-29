@@ -7,7 +7,7 @@ import { Category } from './shared/category.model';
 
 @Component({
   moduleId: module.id,
-  selector: 'app-categories',
+  selector: 'bfy-categories',
   templateUrl: 'categories.component.html',
   styleUrls: ['categories.component.css'],
   directives: [ROUTER_DIRECTIVES],
@@ -36,6 +36,6 @@ export class CategoriesComponent implements OnInit {
   onSelect(category: Category) {
     let categoryBooks = category['_links'].books.href;
     let categoryUrl = categoryBooks.split("/").slice(-3).join("/");
-    this.router.navigate(['/' + categoryUrl]);
+    this.router.navigate(['/main-content/' + categoryUrl]);
   }
 }

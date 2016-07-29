@@ -1,12 +1,12 @@
 import { provideRouter, RouterConfig } from '@angular/router';
 
-import { BooksRoutes } from './books/books.routes';
+import { MainContentRoutes } from './main-content/main-content.routes';
 
 export const routes: RouterConfig = [
-  ...BooksRoutes,
+  ...MainContentRoutes,
   {
     path: '',
-    redirectTo: '/categories/1/books',
+    redirectTo: 'main-content/categories/1/books',
     terminal: true
   }
 ];

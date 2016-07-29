@@ -5,7 +5,7 @@ import { Book } from '../shared/book.model';
 
 @Component({
   moduleId: module.id,
-  selector: 'app-book',
+  selector: 'bfy-book',
   templateUrl: 'book.component.html',
   styleUrls: ['book.component.css'],
   directives: [ROUTER_DIRECTIVES]
@@ -32,7 +32,6 @@ export class BookComponent implements OnInit, OnDestroy {
 
   onSelect(book: Book) {
     let bookId = book['_links'].self.href.split("/").slice(-1);
-    console.log(bookId);
-    this.router.navigate(['/books/' + bookId]);
+    this.router.navigate(['/main-content/books/' + bookId]);
   }
 }
