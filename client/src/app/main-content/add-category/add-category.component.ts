@@ -18,11 +18,11 @@ export class AddCategoryComponent {
   ) { }
 
   cancel() {
-    console.log('cencel');
+    console.log('cancel');
   }
 
   save() {
     let categoryName = this.editName;
-    this.mainContentService.addNewCategory(categoryName);
+    this.mainContentService.addNewCategory(categoryName).subscribe();
   }
 }
