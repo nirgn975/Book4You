@@ -21,7 +21,7 @@ export const ContentRoutes: RouterConfig = [
         component: BookDetailsComponent
       },
       {
-        path: 'addContent',
+        path: 'addContent/:content',
         component: AddContentComponent
       },
     ]

@@ -15,6 +15,7 @@ export class CategoryService {
   getCategories() {
     return this.http.get(environment.baseUrl + 'categories')
       .map((res: Response) => res.json()._embedded.categories)
+      .do((data) => console.log(data))
       .catch(this.handleError);
   }
 
@@ -24,13 +25,13 @@ export class CategoryService {
       .catch(this.handleError);
   }
 
-  addNewCategory(categoryName: string) {
-    let body = JSON.stringify({ name: categoryName });
+  addNewCategory(newCategory: string) {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 
-    return this.http.post('http://localhost:8080/api/v1/categories', body, options)
-                .catch(this.handleError);
+    return this.http.post(environment.baseUrl + 'categories', newCategory, options)
+        .map((res: Response) => res.json())
+        .catch(this.handleError);
   }
 
   private handleError(error: Response) {
