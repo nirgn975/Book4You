@@ -4,6 +4,6 @@ export class BfyPage {
   }
 
   getParagraphText() {
-    return element(by.css('bfy-app h1')).getText();
+    return element(by.css('app-root h1')).getText();
   }
 }

@@ -23,9 +23,10 @@
     }
   },
   "defaults": {
-    "prefix": "app",
+    "prefix": "bfy",
     "sourceDir": "src",
-    "styleExt": "css",
-    "prefixInterfaces": false
+    "styleExt": "scss",
+    "prefixInterfaces": false,
+    "lazyRoutePrefix": "+"
   }
 }

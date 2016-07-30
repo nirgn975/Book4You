@@ -1,13 +1,23 @@
 import { provideRouter, RouterConfig } from '@angular/router';
 
-import { MainContentRoutes } from './main-content/main-content.routes';
+import { ContentRoutes } from './content/content.routes';
+import { CartComponent } from './cart/cart.component';
+import { WishlistComponent } from './wishlist/wishlist.component';
 
 export const routes: RouterConfig = [
-  ...MainContentRoutes,
+  ...ContentRoutes,
   {
     path: '',
-    redirectTo: 'main-content/categories/1/books',
+    redirectTo: 'content/categories/1/books',
     terminal: true
+  },
+  {
+    path: 'cart',
+    component: CartComponent,
+  },
+  {
+    path: 'wishlist',
+    component: WishlistComponent,
   }
 ];
 

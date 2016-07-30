@@ -1,3 +1,9 @@
+"use strict";
+
+// SystemJS configuration file, see links for more information
+// https://github.com/systemjs/systemjs
+// https://github.com/systemjs/systemjs/blob/master/docs/config-api.md
+
 /***********************************************************************************************
  * User Configuration.
  **********************************************************************************************/
@@ -18,6 +24,7 @@ const barrels: string[] = [
   '@angular/core',
   '@angular/common',
   '@angular/compiler',
+  '@angular/forms',
   '@angular/http',
   '@angular/router',
   '@angular/platform-browser',
@@ -30,15 +37,16 @@ const barrels: string[] = [
   'app',
   'app/shared',
   'app/shared/nav',
-  'app/main-content/categories',
-  'app/main-content/books',
-  'app/main-content/books/book',
-  'app/main-content/books/book-details',
-  'app/main-content/books/books-list',
-  'app/main-content',
-  'app/main-content/category-header',
-  'app/main-content/add-categoty',
-  'app/main-content/add-category',
+  'app/cart',
+  'app/wishlist',
+  'app/content',
+  'app/content/categories',
+  'app/content/categories/category',
+  'app/content/categories/category-header',
+  'app/content/add-content',
+  'app/content/book-list',
+  'app/content/book-list/book',
+  'app/content/book-list/book-details',
   /** @cli-barrel */
 ];
 
