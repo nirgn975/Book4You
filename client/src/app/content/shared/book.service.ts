@@ -3,6 +3,7 @@ import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 
+import { environment } from '../../../app/';
 import { Book } from './book.model';
 
 @Injectable()
@@ -12,13 +13,13 @@ export class BookService {
     private http: Http) {}
 
   getBooksByCategory(categoryId: number) {
-    return this.http.get('http://localhost:8080/api/v1/categories/' + categoryId + '/books')
+    return this.http.get(environment.baseUrl + 'categories/' + categoryId + '/books')
       .map((res: Response) => <Book[]>res.json()._embedded.books)
       .catch(this.handleError);
   }
 
   getBookById(bookId: number) {
-    return this.http.get('http://localhost:8080/api/v1/books/' + bookId)
+    return this.http.get(environment.baseUrl + 'books/' + bookId)
       .map((res: Response) => <Book>res.json())
       .catch(this.handleError);
   }

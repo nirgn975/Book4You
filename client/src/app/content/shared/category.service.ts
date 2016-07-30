@@ -3,6 +3,7 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 
+import { environment } from '../../../app/';
 import { Category } from './category.model';
 
 @Injectable()
@@ -12,13 +13,13 @@ export class CategoryService {
     private http: Http) {}
 
   getCategories() {
-    return this.http.get('http://localhost:8080/api/v1/categories')
+    return this.http.get(environment.baseUrl + 'categories')
       .map((res: Response) => res.json()._embedded.categories)
       .catch(this.handleError);
   }
 
   getCategory(categoryId: number) {
-    return this.http.get('http://localhost:8080/api/v1/categories/' + categoryId)
+    return this.http.get(environment.baseUrl + 'categories/' + categoryId)
       .map((res: Response) => res.json())
       .catch(this.handleError);
   }
