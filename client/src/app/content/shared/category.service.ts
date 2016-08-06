@@ -17,7 +17,8 @@ export class CategoryService {
     }
 
   getCategories() {
-    return this.http.get(environment.baseUrl + 'categories', { headers: this.headers })
+    console.log(this.headers);
+    return this.http.get(environment.baseUrl + 'categories')
       .map((res: Response) => res.json()._embedded.categories)
       .do((data) => console.log(data))
       .catch(this.handleError);
@@ -26,6 +27,7 @@ export class CategoryService {
   getCategory(categoryId: number) {
     return this.http.get(environment.baseUrl + 'categories/' + categoryId)
       .map((res: Response) => res.json())
+      .do((data) => console.log(data))
       .catch(this.handleError);
   }
 

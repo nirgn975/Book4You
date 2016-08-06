@@ -15,12 +15,14 @@ export class BookService {
   getBooksByCategory(categoryId: number) {
     return this.http.get(environment.baseUrl + 'categories/' + categoryId + '/books')
       .map((res: Response) => <Book[]>res.json()._embedded.books)
+      .do((data) => console.log(data))
       .catch(this.handleError);
   }
 
   getBookById(bookId: number) {
     return this.http.get(environment.baseUrl + 'books/' + bookId)
       .map((res: Response) => <Book>res.json())
+      .do((data) => console.log(data))
       .catch(this.handleError);
   }
 
