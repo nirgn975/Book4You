@@ -7,7 +7,6 @@ import { Component } from '@angular/core';
   styleUrls: ['nav.component.css']
 })
 export class NavComponent {
-
   private LoginIsVisible: boolean;
   private user = {
     'email': '',

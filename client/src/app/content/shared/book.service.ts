@@ -15,12 +15,14 @@ export class BookService {
   getBooksByCategory(categoryId: number) {
     return this.http.get(environment.baseUrl + 'categories/' + categoryId + '/books')
       .map((res: Response) => <Book[]>res.json()._embedded.books)
+      .do((data) => this.toImage(data))
       .catch(this.handleError);
   }
 
   getBookById(bookId: number) {
     return this.http.get(environment.baseUrl + 'books/' + bookId)
       .map((res: Response) => <Book>res.json())
+      .do((data) => this.toImage(Array(data)))
       .catch(this.handleError);
   }
 
@@ -36,5 +38,11 @@ export class BookService {
   private handleError(error: Response) {
     console.error(error);
     return Observable.throw(error.json().error || 'Server error');
+  }
+
+  toImage(items: Book[]) {
+    for (let item of items) {
+      item.picture = 'data:image/png;base64,' + item.picture;
+    }
   }
 }

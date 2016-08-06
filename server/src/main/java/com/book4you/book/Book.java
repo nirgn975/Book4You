@@ -5,17 +5,30 @@ import com.book4you.core.BaseEntity;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
 public class Book extends BaseEntity {
+    @NotNull
+    @Size(min = 3, max = 140)
     private String title;
+
+    @NotNull
+    @Size(min = 2, max = 50)
     private String author;
 
     @Size(max = 5000)
     private String description;
+
+    @NotNull
+    @Min(1)
+    @Max(1000)
     private int price;
-    private String picture;
+
+    private byte[] picture;
 
     @ManyToOne
     private Category category;
@@ -24,7 +37,7 @@ public class Book extends BaseEntity {
         super();
     }
 
-    public Book(String title, String author, String description, int price, String picture) {
+    public Book(String title, String author, String description, int price, byte[] picture) {
         this();
         this.title = title;
         this.author = author;
@@ -74,8 +87,8 @@ public class Book extends BaseEntity {
         this.category = category;
     }
 
-    public String getPicture() { return picture; }
+    public byte[] getPicture() { return picture; }
 
-    public void setPicture(String picture) { this.picture = picture; }
+    public void setPicture(byte[] picture) { this.picture = picture; }
 
 }
