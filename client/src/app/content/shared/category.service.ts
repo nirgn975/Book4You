@@ -17,7 +17,6 @@ export class CategoryService {
     }
 
   getCategories() {
-    console.log(this.headers);
     return this.http.get(environment.baseUrl + 'categories')
       .map((res: Response) => res.json()._embedded.categories)
       .catch(this.handleError);

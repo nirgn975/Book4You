@@ -28,7 +28,7 @@ public class Book extends BaseEntity {
     @Max(1000)
     private int price;
 
-    private String picture;
+    private byte[] picture;
 
     @ManyToOne
     private Category category;
@@ -37,7 +37,7 @@ public class Book extends BaseEntity {
         super();
     }
 
-    public Book(String title, String author, String description, int price, String picture) {
+    public Book(String title, String author, String description, int price, byte[] picture) {
         this();
         this.title = title;
         this.author = author;
@@ -87,8 +87,8 @@ public class Book extends BaseEntity {
         this.category = category;
     }
 
-    public String getPicture() { return picture; }
+    public byte[] getPicture() { return picture; }
 
-    public void setPicture(String picture) { this.picture = picture; }
+    public void setPicture(byte[] picture) { this.picture = picture; }
 
 }

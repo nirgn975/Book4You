@@ -50,6 +50,7 @@ export class AddContentComponent implements OnInit {
   }
 
   onSubmit(event) {
+    console.log(this.bookForm);
     event.preventDefault();
 
     if (this.content == "book") {
