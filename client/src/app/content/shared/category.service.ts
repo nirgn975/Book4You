@@ -8,12 +8,16 @@ import { Category } from './category.model';
 
 @Injectable()
 export class CategoryService {
+  headers = new Headers();
 
   constructor(
-    private http: Http) {}
+    private http: Http) {
+      this.headers.append('Content-Type', 'application/json');
+      this.headers.append('Authorization', 'Basic ' + btoa('nirgn:password'));
+    }
 
   getCategories() {
-    return this.http.get(environment.baseUrl + 'categories')
+    return this.http.get(environment.baseUrl + 'categories', { headers: this.headers })
       .map((res: Response) => res.json()._embedded.categories)
       .do((data) => console.log(data))
       .catch(this.handleError);
