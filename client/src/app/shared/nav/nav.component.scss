@@ -103,4 +103,31 @@ header {
       margin: 0 20px 0 0;
     }
   }
+
+  .modal-dialog {
+    width: 90rem;
+  }
+
+  .hero-image {
+    float: right;
+    width: 50%;
+    display: inline-block;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  .login-content {
+    width: 50%;
+    display: inline-block;
+
+    .input-group {
+      direction: ltr;
+
+      input {
+        direction: rtl;
+      }
+    }
+  }
 }
