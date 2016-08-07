@@ -9,11 +9,12 @@ import { Category } from './category.model';
 @Injectable()
 export class CategoryService {
   headers = new Headers();
+  options = new RequestOptions({ headers: this.headers });
 
   constructor(
     private http: Http) {
       this.headers.append('Content-Type', 'application/json');
-      this.headers.append('Authorization', 'Basic ' + btoa('nirgn:password'));
+      // this.headers.append('Authorization', 'Basic ' + btoa('nirgn:password'));
     }
 
   getCategories() {
@@ -29,16 +30,18 @@ export class CategoryService {
   }
 
   addNewCategory(newCategory: string) {
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions({ headers: headers });
+    return this.http.post(environment.baseUrl + 'categories', newCategory, this.options)
+        .map((res: Response) => res)
+        .catch(this.handleError);
+  }
 
-    return this.http.post(environment.baseUrl + 'categories', newCategory, options)
-        .map((res: Response) => res.json())
+  deleteCategory(categoryId: string) {
+    return this.http.delete(environment.baseUrl + 'categories/' + categoryId, this.options)
+        .map((res: Response) => res)
         .catch(this.handleError);
   }
 
   private handleError(error: Response) {
-    console.error(error);
     return Observable.throw(error.json().error || 'Server error');
   }
 

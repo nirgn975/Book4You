@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { FormGroup, FormControl, Validators, FormBuilder,
   REACTIVE_FORM_DIRECTIVES } from '@angular/forms';
@@ -22,8 +23,10 @@ export class AddContentComponent implements OnInit {
   private sub: any;
   bookForm: FormGroup;
   categoryForm: FormGroup;
+  delCategoryForm: FormGroup;
 
   constructor(
+    private zone: NgZone,
     private route: ActivatedRoute,
     private categoryService: CategoryService,
     private bookService: BookService,
@@ -40,6 +43,9 @@ export class AddContentComponent implements OnInit {
       this.categoryForm = fb.group({
             "name": ["", Validators.required]
         });
+      this.delCategoryForm = fb.group({
+            "category": ["", Validators.required]
+        });
     }
 
   ngOnInit() {
@@ -50,15 +56,39 @@ export class AddContentComponent implements OnInit {
   }
 
   onSubmit(event) {
-    console.log(this.bookForm);
     event.preventDefault();
 
-    if (this.content == "book") {
-      let categoryId = this.bookForm['_value'].category.split("/").slice(-1)[0];
+    if (this.content == "add-book") {
+      let categoryId = this.getCategoryId(this.bookForm['_value'].category);
       this.bookForm['_value'].category = 'categories/' + categoryId;
-      this.bookService.addNewBook(this.bookForm['_value']).subscribe();
+      this.bookService.addNewBook(this.bookForm['_value']).subscribe(
+        data => this.callback(data)
+      );
+    } else if (this.content == "add-category") {
+      this.categoryService.addNewCategory(this.categoryForm['_value']).subscribe(
+        data => this.callback(data)
+      );
+    } else if (this.content == "delete-category") {
+      let categoryId = this.getCategoryId(this.delCategoryForm['_value'].category);
+      this.categoryService.deleteCategory(categoryId).subscribe(
+        data => this.callback(data)
+      );
+    }
+  }
+
+  /**
+   * Get the id from a category URL.
+   */
+  getCategoryId(url: string) {
+    return url.split('/').slice(-1)[0];
+  }
+
+  callback(data: Response) {
+    console.log(data);
+    if (data.ok) {
+      this.router.navigate(['']);
     } else {
-      this.categoryService.addNewCategory(this.categoryForm['_value']).subscribe();
+      alert("Something went wrong, please try again.");
     }
   }
 }
