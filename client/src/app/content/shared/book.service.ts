@@ -8,9 +8,13 @@ import { Book } from './book.model';
 
 @Injectable()
 export class BookService {
+  headers = new Headers();
+  options = new RequestOptions({ headers: this.headers });
 
   constructor(
-    private http: Http) {}
+    private http: Http) {
+      this.headers.append('Content-Type', 'application/json');
+    }
 
   getBooksByCategory(categoryId: number) {
     return this.http.get(environment.baseUrl + 'categories/' + categoryId + '/books')
@@ -27,11 +31,8 @@ export class BookService {
   }
 
   addNewBook(newBook: string) {
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions({ headers: headers });
-
-    return this.http.post(environment.baseUrl + 'books', newBook, options)
-        .map((res: Response) => res.json())
+    return this.http.post(environment.baseUrl + 'books', newBook, this.options)
+        .map((res: Response) => res)
         .catch(this.handleError);
   }
 
