@@ -40,6 +40,8 @@
 </header>
 
 <div *ngIf="LoginIsVisible" class="modal fade show in" id="loginModal" role="dialog">
+  <button type="button" class="close" data-dismiss="modal" (click)="hideLogin()">&times;</button>
+
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="hero-image">
@@ -48,10 +50,7 @@
 
       <div class="login-content">
         <!-- Model header -->
-        <div class="modal-header">
-            <button type="button" class="close pull-left" data-dismiss="modal" (click)="hideLogin()">&times;</button>
-            <h4 class="modal-title">ברוכים הבאים</h4>
-        </div>
+        <h2 class="modal-title">ברוכים הבאים</h2>
 
         <!-- Model body -->
         <div class="modal-body">
@@ -84,9 +83,8 @@
         </div>
 
         <!-- Model footer -->
-        <div class="modal-footer">
+        <div class="model-footer">
           <button type="submit" class="btn btn-login pull-left" (click)="login()">התחבר</button>
-          <button type="button" class="btn btn-close pull-left" (click)="hideLogin()">סגור</button>
         </div>
       </div>
     </div>
