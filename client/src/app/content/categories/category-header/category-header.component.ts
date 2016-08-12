@@ -13,14 +13,14 @@ export class CategoryHeaderComponent {
     private router: Router) {}
 
   addCategory() {
-    this.router.navigate(['/content/addContent/add-category']);
+    this.router.navigate(['/content/addContent/addCategory']);
   };
 
   addBook() {
-    this.router.navigate(['/content/addContent/add-book']);
+    this.router.navigate(['/content/addContent/addBook']);
   };
 
   deleteCategory() {
-    this.router.navigate(['/content/addContent/delete-category']);
+    this.router.navigate(['/content/addContent/deleteCategory']);
   };
 }

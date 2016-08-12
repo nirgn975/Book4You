@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { ActivatedRoute } from '@angular/router';
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, Validators, FormBuilder,
+  REACTIVE_FORM_DIRECTIVES } from '@angular/forms';
 
 import { CategoryService } from '../../shared/category.service';
 import { Category } from '../../shared/category.model';
@@ -12,12 +13,12 @@ import { Utils } from '../shared/utils';
   selector: 'bfy-add-category',
   templateUrl: 'add-category.component.html',
   styleUrls: ['add-category.component.css'],
-  providers: [CategoryService]
+  directives: [REACTIVE_FORM_DIRECTIVES],
+  providers: [CategoryService, Utils]
 })
 export class AddCategoryComponent implements OnInit {
   categoryForm: FormGroup;
   categories: Observable<Category[]>;
-  content: string;
 
   constructor(
     private categoryService: CategoryService,
@@ -30,9 +31,6 @@ export class AddCategoryComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.route.params.subscribe(params => {
-      this.content = params['content'];
-    });
      this.categories = this.categoryService.getCategories();
   }
 
