@@ -2,6 +2,7 @@
   <div *ngIf="book">
     <div class="col-sm-8">
       <h2>{{ book.title }}</h2>
+      <a class="btn delete-book" (click)="deleteBook()">מחק ספר</a>
       <span>ספר מאת: {{ book.author }}</span>
       <p>{{ book.description }}</p>
     </div>
@@ -12,8 +13,8 @@
         <p>{{ book.price }}₪</p>
       </div>
       <button class="btn btn-purchase">
-        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-        רכישה
+        <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+        הוסף לעגלה
       </button>
     </div>
   </div>

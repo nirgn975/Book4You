@@ -276,8 +276,6 @@ public class DatabaseLoader implements ApplicationRunner {
             fileInputStream = new FileInputStream(file);
             fileInputStream.read(bFile);
             fileInputStream.close();
-
-//            System.out.println("Done");
         }catch(Exception e){
             e.printStackTrace();
         }

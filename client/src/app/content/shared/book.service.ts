@@ -14,10 +14,11 @@ export class BookService {
   constructor(
     private http: Http) {
       this.headers.append('Content-Type', 'application/json');
+      // this.headers.append('Authorization', 'Basic ' + btoa('nirgn:password'));
     }
 
   getBooksByCategory(categoryId: number) {
-    return this.http.get(environment.baseUrl + 'categories/' + categoryId + '/books')
+    return this.http.get(environment.baseUrl + 'categories/' + categoryId + '/books', this.headers)
       .map((res: Response) => <Book[]>res.json()._embedded.books)
       .do((data) => this.toImage(data))
       .catch(this.handleError);
@@ -32,6 +33,12 @@ export class BookService {
 
   addNewBook(newBook: string) {
     return this.http.post(environment.baseUrl + 'books', newBook, this.options)
+        .map((res: Response) => res)
+        .catch(this.handleError);
+  }
+
+  deleteBook(bookId: string) {
+    return this.http.delete(environment.baseUrl + 'books/' + bookId, this.options)
         .map((res: Response) => res)
         .catch(this.handleError);
   }
