@@ -38,4 +38,8 @@ export class NavComponent {
   toCart() {
     this.router.navigate(['/cart']);
   }
+
+  toRoot() {
+    this.router.navigate(['']);
+  }
 }
