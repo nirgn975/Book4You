@@ -239,8 +239,6 @@ public class DatabaseLoader implements ApplicationRunner {
                 }
         };
 
-        Book someBook = dummyBooks[0][0];
-
         // Save the data.
         int i = 0;
         for (Category c: dummyCategories) {
@@ -260,6 +258,9 @@ public class DatabaseLoader implements ApplicationRunner {
         for (User u: dummyUsers) {
             u.addBookToWishlist(dummyBooks[0][0]);
             u.addBookToWishlist(dummyBooks[0][1]);
+
+            u.addBookToCart(dummyBooks[1][0]);
+            u.addBookToCart(dummyBooks[2][0]);
             users.save(u);
         }
     }
