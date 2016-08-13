@@ -12,7 +12,8 @@ export class BookService {
   options = new RequestOptions({ headers: this.headers });
 
   constructor(
-    private http: Http) {
+    private http: Http
+  ) {
       this.headers.append('Content-Type', 'application/json');
       // this.headers.append('Authorization', 'Basic ' + btoa('nirgn:password'));
     }

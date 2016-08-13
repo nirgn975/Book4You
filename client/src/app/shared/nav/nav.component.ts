@@ -15,7 +15,8 @@ export class NavComponent {
   };
 
   constructor(
-    private router: Router) {}
+    private router: Router
+  ) {}
 
   showLogin() {
     this.LoginIsVisible = true;

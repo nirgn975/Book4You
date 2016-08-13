@@ -10,7 +10,8 @@ import { Router } from '@angular/router';
 export class CategoryHeaderComponent {
 
   constructor(
-    private router: Router) {}
+    private router: Router
+  ) {}
 
   addCategory() {
     this.router.navigate(['/content/addContent/addCategory']);

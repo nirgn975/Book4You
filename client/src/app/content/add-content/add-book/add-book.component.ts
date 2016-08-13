@@ -24,7 +24,8 @@ export class AddBookComponent {
     private categoryService: CategoryService,
     private bookService: BookService,
     private utils: Utils,
-    fb: FormBuilder) {
+    fb: FormBuilder
+  ) {
       this.bookForm = fb.group({
           "title": ["", Validators.required],
           "author": ["", Validators.required],
