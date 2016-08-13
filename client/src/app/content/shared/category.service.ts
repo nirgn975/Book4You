@@ -10,10 +10,14 @@ import { Category } from './category.model';
 export class CategoryService {
   headers = new Headers();
   options = new RequestOptions({ headers: this.headers });
+  token = '';
 
   constructor(
     private http: Http
   ) {
+      localStorage.setItem('token', 'nirGalOn');
+      this.token = localStorage.getItem('token');
+      console.log(this.token);
       this.headers.append('Content-Type', 'application/json');
       this.headers.append('Authorization', 'Basic ' + btoa('nirgn:password'));
     }
@@ -45,5 +49,4 @@ export class CategoryService {
   private handleError(error: Response) {
     return Observable.throw(error.json().error || 'Server error');
   }
-
 }
