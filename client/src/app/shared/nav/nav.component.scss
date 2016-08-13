@@ -17,6 +17,17 @@ header {
       color: #c0c0c0;
       line-height: 5rem;
       margin-left: 3rem;
+      cursor: pointer;
+    }
+  }
+
+  #logo {
+    cursor: pointer;
+  }
+
+  #cart {
+    a {
+      cursor: pointer;
     }
   }
 

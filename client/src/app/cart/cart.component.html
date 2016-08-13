@@ -1,3 +1,22 @@
-<p>
-  cart works!
-</p>
+<div class="col-sm-2"></div>
+
+<div id="pay" class="col-sm-5 thumbnail thumbnail-content">
+  <div>
+
+  </div>
+  <button>לרכישה באמצעות Paypal</button>
+</div>
+
+<div class="list-group col-sm-offset-1 col-sm-2">
+  <a href="#" class="list-group-item" *ngFor="let item of cart | async">
+    <h4 class="list-group-item-heading">{{ item.author }}</h4>
+    <h5 class="list-group-item-text">₪ {{ item.price }}</h5>
+  </a>
+
+  <a href="#" class="list-group-item">
+    <h4 class="list-group-item-heading">סה"כ</h4>
+    <h5 class="list-group-item-text">₪ 129</h5>
+  </a>
+</div>
+
+<div class="col-sm-2"></div>
