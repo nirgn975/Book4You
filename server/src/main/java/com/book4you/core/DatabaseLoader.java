@@ -252,7 +252,7 @@ public class DatabaseLoader implements ApplicationRunner {
 
         // Save users
         User[] dummyUsers = {
-                new User("nir", "galon", "nirgn", "password", new String[] {"ROLE_USER", "ROLE_ADMIN"}),
+                new User("nir", "galon", "nirgn", "password", new String[] {"ROLE_USER", "ROLE_ADMIN"})
 //                new User("adi", "saar", "adis", "12345", new String[] {"ROLE_USER"})
         };
 

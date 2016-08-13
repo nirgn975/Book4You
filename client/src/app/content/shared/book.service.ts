@@ -15,18 +15,18 @@ export class BookService {
     private http: Http
   ) {
       this.headers.append('Content-Type', 'application/json');
-      // this.headers.append('Authorization', 'Basic ' + btoa('nirgn:password'));
+      this.headers.append('Authorization', 'Basic ' + btoa('nirgn:password'));
     }
 
   getBooksByCategory(categoryId: number) {
-    return this.http.get(environment.baseUrl + 'categories/' + categoryId + '/books', this.headers)
+    return this.http.get(environment.baseUrl + 'categories/' + categoryId + '/books', this.options)
       .map((res: Response) => <Book[]>res.json()._embedded.books)
       .do((data) => this.toImage(data))
       .catch(this.handleError);
   }
 
   getBookById(bookId: number) {
-    return this.http.get(environment.baseUrl + 'books/' + bookId)
+    return this.http.get(environment.baseUrl + 'books/' + bookId, this.options)
       .map((res: Response) => <Book>res.json())
       .do((data) => this.toImage(Array(data)))
       .catch(this.handleError);

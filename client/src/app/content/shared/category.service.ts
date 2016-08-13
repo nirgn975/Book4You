@@ -15,17 +15,17 @@ export class CategoryService {
     private http: Http
   ) {
       this.headers.append('Content-Type', 'application/json');
-      // this.headers.append('Authorization', 'Basic ' + btoa('nirgn:password'));
+      this.headers.append('Authorization', 'Basic ' + btoa('nirgn:password'));
     }
 
   getCategories() {
-    return this.http.get(environment.baseUrl + 'categories', this.headers )
+    return this.http.get(environment.baseUrl + 'categories', this.options)
       .map((res: Response) => res.json()._embedded.categories)
       .catch(this.handleError);
   }
 
   getCategory(categoryId: number) {
-    return this.http.get(environment.baseUrl + 'categories/' + categoryId)
+    return this.http.get(environment.baseUrl + 'categories/' + categoryId, this.options)
       .map((res: Response) => res.json())
       .catch(this.handleError);
   }
