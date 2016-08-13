@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   moduleId: module.id,
@@ -13,7 +14,8 @@ export class NavComponent {
     'password': ''
   };
 
-  constructor() {}
+  constructor(
+    private router: Router) {}
 
   showLogin() {
     this.LoginIsVisible = true;
@@ -26,6 +28,10 @@ export class NavComponent {
   login() {
     console.log(this.user.email);
     console.log(this.user.password);
+  }
+
+  toWishlist() {
+    this.router.navigate(['/wishlist']);
   }
 
 }
