@@ -35,4 +35,7 @@ export class NavComponent {
     this.router.navigate(['/wishlist']);
   }
 
+  toCart() {
+    this.router.navigate(['/cart']);
+  }
 }
