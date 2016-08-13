@@ -38,10 +38,8 @@ export class BookService {
   }
 
   deleteBook(bookId: string) {
-    console.log(this.options);
     return this.http.delete(environment.baseUrl + 'books/' + bookId, this.options)
         .map((res: Response) => res)
-        .do((data) => console.log(data))
         .catch(this.handleError);
   }
 

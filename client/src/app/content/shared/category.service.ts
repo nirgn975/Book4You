@@ -14,16 +14,10 @@ export class CategoryService {
   constructor(
     private http: Http) {
       this.headers.append('Content-Type', 'application/json');
-      // this.headers.append('Content-Type', 'text/plain');
-      // this.headers.append('Access-Control-Allow-Origin', 'http://localhost:4200');
       // this.headers.append('Authorization', 'Basic ' + btoa('nirgn:password'));
-      // this.headers.append('Authentication', 'Basic ' + btoa('nirgn:password'));
-
     }
 
   getCategories() {
-
-    console.log(this.headers);
     return this.http.get(environment.baseUrl + 'categories', this.headers )
       .map((res: Response) => res.json()._embedded.categories)
       .catch(this.handleError);
@@ -42,7 +36,6 @@ export class CategoryService {
   }
 
   deleteCategory(categoryId: string) {
-    this.headers.append('Authorization', 'Basic ' + btoa('nirgn:password'));
     return this.http.delete(environment.baseUrl + 'categories/' + categoryId, this.options)
         .map((res: Response) => res)
         .catch(this.handleError);
