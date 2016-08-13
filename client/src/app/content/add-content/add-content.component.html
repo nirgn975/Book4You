@@ -1,0 +1,94 @@
+<div class="col-sm-12 col-md-8 col-lg-9 thumbnail pull-right">
+  <div *ngIf="content == 'add-category'">
+    <form class="form-horizontal" [formGroup]="categoryForm" (submit)="onSubmit($event)">
+
+      <!-- Name -->
+      <div class="form-group">
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="category" placeholder="מתח, רומן, מדע ופטנזיה.." formControlName="name" required>
+        </div>
+        <label for="category" class="col-sm-2 control-label">שם הקטגוריה</label>
+      </div>
+
+      <button type="submit" class="btn btn-default" [disabled]="!categoryForm.valid">Submit</button>
+    </form>
+  </div>
+
+  <!-- New book form -->
+  <div *ngIf="content == 'add-book'">
+    <form class="form-horizontal" [formGroup]="bookForm" (submit)="onSubmit($event)">
+
+      <!-- Title -->
+      <div class="form-group">
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="title" placeholder="זהבה ושלושת הדובים" formControlName="title" required>
+        </div>
+        <label for="title" class="col-sm-2 control-label">שם הספר</label>
+      </div>
+
+      <!-- Author -->
+      <div class="form-group">
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="author" placeholder="אשכול נבו" formControlName="author" required>
+        </div>
+        <label for="author" class="col-sm-2 control-label">שם המחבר</label>
+      </div>
+
+      <!-- Description -->
+      <div class="form-group">
+        <div class="col-sm-10">
+          <textarea class="form-control" id="description" rows="3" placeholder="תיאור קצר על הספר" formControlName="description" required></textarea>
+        </div>
+        <label for="description" class="col-sm-2 control-label">תיאור</label>
+      </div>
+
+      <!-- Price -->
+      <div class="form-group">
+        <div class="col-sm-10">
+          <div class="input-group" style="direction: ltr;">
+            <input type="number" class="form-control" id="price" placeholder="סכום" formControlName="price" style="direction: rtl;" required>
+            <div class="input-group-addon">₪</div>
+          </div>
+        </div>
+        <label for="price" class="col-sm-2 control-label">מחיר</label>
+      </div>
+
+      <!-- Picture -->
+      <!-- <div class="form-group">
+        <div class="col-sm-10">
+          <input type="file" id="picture" formControlName="picture" required>
+        </div>
+        <label for="picture" class="col-sm-2 control-label">תמונה</label>
+      </div> -->
+
+      <!-- Category -->
+      <div class="form-group">
+        <div class="col-sm-10">
+          <select class="form-control" formControlName="category" required>
+            <option *ngFor="let category of categories | async" [value]="category._links.category.href">{{ category.name }}</option>
+          </select>
+        </div>
+        <label for="category" class="col-sm-2 control-label">קטגוריה</label>
+      </div>
+
+      <button type="submit" class="btn btn-default" [disabled]="!bookForm.valid">Submit</button>
+    </form>
+  </div>
+
+
+  <div *ngIf="content == 'delete-category'">
+    <form class="form-horizontal" [formGroup]="delCategoryForm" (submit)="onSubmit($event)">
+
+      <div class="form-group">
+        <div class="col-sm-10">
+          <select class="form-control" formControlName="category" required>
+            <option *ngFor="let category of categories | async" [value]="category._links.category.href">{{ category.name }}</option>
+          </select>
+        </div>
+        <label for="category" class="col-sm-2 control-label">קטגוריה</label>
+      </div>
+
+      <button type="submit" class="btn btn-default" [disabled]="!delCategoryForm.valid">Submit</button>
+    </form>
+  </div>
+</div>
