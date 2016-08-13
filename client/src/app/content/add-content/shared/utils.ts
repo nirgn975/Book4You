@@ -19,7 +19,6 @@ export class Utils {
    *
    */
   callback(data: Response) {
-    console.log(data);
     if (data.ok) {
       this.router.navigate(['']);
     } else {

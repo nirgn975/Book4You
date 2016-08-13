@@ -23,14 +23,10 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .passwordEncoder(User.PASSWORD_ENCODER);
     }
 
-//    @Override
-//    protected void configure(HttpSecurity http) throws Exception {
-//        http.authorizeRequests().anyRequest().authenticated()
-//                .and().httpBasic();
-//    }
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.httpBasic().and().csrf().disable();
+        http.httpBasic();
+            // .authorizeRequests().anyRequest().authenticated()
+            //.and().csrf().disable();
     }
 }

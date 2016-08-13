@@ -15,6 +15,7 @@ import { Book } from '../shared/book.model';
 export class BookDetailsComponent implements OnInit, OnDestroy {
   book: Observable<Book>;
   errorMessage: String;
+  bookId: number;
   private sub: any;
 
   constructor(
@@ -24,8 +25,8 @@ export class BookDetailsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
-      let id = +params['bookId'];
-      this.bookService.getBookById(id).subscribe(res => this.book = res);
+      this.bookId = +params['bookId'];
+      this.bookService.getBookById(this.bookId).subscribe(res => this.book = res);
     });
   }
 
@@ -33,4 +34,15 @@ export class BookDetailsComponent implements OnInit, OnDestroy {
     this.sub.unsubscribe();
   }
 
+  deleteBook() {
+    this.bookService.deleteBook(String(this.bookId)).subscribe(
+      data => function(data) {
+        if (data.ok) {
+          this.router.navigate(['']);
+        } else {
+          alert("Something went wrong, please try again.");
+        }
+      }
+    );
+  }
 }
