@@ -20,7 +20,8 @@ export class CategoriesComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private categoryService: CategoryService) {}
+    private categoryService: CategoryService
+  ) {}
 
   ngOnInit() {
     this.categories = this.categoryService.getCategories();

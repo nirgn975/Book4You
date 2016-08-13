@@ -1,15 +1,20 @@
 package com.book4you.user;
 
 
+import com.book4you.book.Book;
 import com.book4you.core.BaseEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "`User`")
@@ -34,6 +39,12 @@ public class User extends BaseEntity {
     @JsonIgnore
     private String[] roles;
 
+    @OneToMany()
+    private List<Book> wishlist;
+
+    @OneToMany()
+    private List<Book> cart;
+
     protected User() {
         super();
     }
@@ -45,6 +56,8 @@ public class User extends BaseEntity {
         this.username = username;
         setPassword(password);
         this.roles = roles;
+        this.wishlist = new ArrayList<>();
+        this.cart = new ArrayList<>();
     }
 
     public String getFirstName() {
@@ -86,4 +99,12 @@ public class User extends BaseEntity {
     public void setRoles(String[] roles) {
         this.roles = roles;
     }
+
+    public List<Book> getWishlist() { return wishlist; }
+
+    public List<Book> getCart() { return cart; }
+
+    public void addBookToWishlist(Book book) { this.wishlist.add(book); }
+
+    public void addBookToCart(Book book) { this.cart.add(book); }
 }

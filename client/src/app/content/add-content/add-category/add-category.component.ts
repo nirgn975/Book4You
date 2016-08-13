@@ -24,7 +24,8 @@ export class AddCategoryComponent implements OnInit {
     private categoryService: CategoryService,
     private route: ActivatedRoute,
     private utils: Utils,
-    fb: FormBuilder) {
+    fb: FormBuilder
+  ) {
     this.categoryForm = fb.group({
           "name": ["", Validators.required]
       });

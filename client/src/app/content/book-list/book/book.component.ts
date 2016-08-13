@@ -17,7 +17,8 @@ export class BookComponent implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router) {}
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {

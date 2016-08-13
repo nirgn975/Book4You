@@ -1,6 +1,6 @@
 package com.book4you.core;
 
-import com.book4you.user.DetailsService;
+//import com.book4you.user.DetailsService;
 import com.book4you.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -14,19 +14,19 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
-    @Autowired
-    DetailsService userDetailsService;
-
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService)
-                .passwordEncoder(User.PASSWORD_ENCODER);
-    }
+//    @Autowired
+//    DetailsService userDetailsService;
+//
+//    @Override
+//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+//        auth.userDetailsService(userDetailsService)
+//                .passwordEncoder(User.PASSWORD_ENCODER);
+//    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.httpBasic();
-        //.and().authorizeRequests().anyRequest().authenticated();
-        //.and().csrf().disable();
+        http.httpBasic()
+//        .and().authorizeRequests().anyRequest().authenticated()
+        .and().csrf().disable();
     }
 }
