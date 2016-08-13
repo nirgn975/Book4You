@@ -252,15 +252,18 @@ public class DatabaseLoader implements ApplicationRunner {
 
         // Save users
         User[] dummyUsers = {
-                new User("nir", "galon", "nirgn", "password", new String[] {"ROLE_USER", "ROLE_ADMIN"})
+                new User("nir", "galon", "nirgn", "password", new String[] {"ROLE_USER", "ROLE_ADMIN"}),
+//                new User("adi", "saar", "adis", "12345", new String[] {"ROLE_USER"})
         };
 
+        int y = 0;
         for (User u: dummyUsers) {
-            u.addBookToWishlist(dummyBooks[0][0]);
-            u.addBookToWishlist(dummyBooks[0][1]);
+            u.addBookToWishlist(dummyBooks[0][y]);
+            u.addBookToWishlist(dummyBooks[0][y + 1]);
 
-            u.addBookToCart(dummyBooks[1][0]);
-            u.addBookToCart(dummyBooks[2][0]);
+            u.addBookToCart(dummyBooks[1][y]);
+            u.addBookToCart(dummyBooks[3][y]);
+            y++;
             users.save(u);
         }
     }
