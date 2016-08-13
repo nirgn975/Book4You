@@ -21,7 +21,8 @@ export class BookDetailsComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private bookService: BookService) {}
+    private bookService: BookService
+  ) {}
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {

@@ -24,7 +24,8 @@ export class DeleteCategoryComponent implements OnInit {
     private categoryService: CategoryService,
     private route: ActivatedRoute,
     private utils: Utils,
-    fb: FormBuilder) {
+    fb: FormBuilder
+  ) {
       this.delCategoryForm = fb.group({
             "category": ["", Validators.required]
         });
