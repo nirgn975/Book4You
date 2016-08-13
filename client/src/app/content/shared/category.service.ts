@@ -15,9 +15,6 @@ export class CategoryService {
   constructor(
     private http: Http
   ) {
-      localStorage.setItem('token', 'nirGalOn');
-      this.token = localStorage.getItem('token');
-      console.log(this.token);
       this.headers.append('Content-Type', 'application/json');
       this.headers.append('Authorization', 'Basic ' + btoa('nirgn:password'));
     }
