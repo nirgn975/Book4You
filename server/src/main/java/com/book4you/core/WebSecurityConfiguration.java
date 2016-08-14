@@ -4,6 +4,7 @@ import com.book4you.user.DetailsService;
 import com.book4you.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -29,7 +30,10 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.httpBasic()
-        .and().authorizeRequests().anyRequest().authenticated()
+        .and().authorizeRequests()
+            .antMatchers(HttpMethod.POST, "/").authenticated()
+            .antMatchers(HttpMethod.PATCH, "/").authenticated()
+            .antMatchers(HttpMethod.DELETE, "/").authenticated()
         .and().addFilterAfter(new CORSFilter(), CsrfFilter.class)
         .csrf().disable();
     }

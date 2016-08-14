@@ -21,7 +21,14 @@ export class AuthenticationService {
 
       return this.http.get(environment.baseUrl, options)
         .map((res: Response) => res)
-        .do((data) => this.saveData(data, 'Basic ' + btoa(userName + ':' + password)))
+        .do((data) =>
+          this.saveData(
+            data,
+            'Basic ' + btoa(userName + ':' + password),
+            userName
+          )
+        )
+        .do((data) => console.log(data))
         .catch(this.handleError);
     }
   }
@@ -45,6 +52,7 @@ export class AuthenticationService {
 
   logout() {
     localStorage.removeItem('auth');
+    localStorage.removeItem('userName');
   }
 
   checkAuth() {
@@ -54,9 +62,10 @@ export class AuthenticationService {
     return false;
   }
 
-  saveData(res: Response, auth: string) {
+  saveData(res: Response, auth: string, userName: string) {
     if (res.status == 200) {
       localStorage.setItem('auth', auth);
+      localStorage.setItem('userName', userName);
     }
   }
 
