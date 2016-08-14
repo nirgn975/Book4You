@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
+import { AuthenticationService } from '../shared/authentication.service';
 import { CartService } from './shared/cart.service';
 import { Book } from '../content/shared/book.model';
 
@@ -9,17 +10,21 @@ import { Book } from '../content/shared/book.model';
   selector: 'bfy-cart',
   templateUrl: 'cart.component.html',
   styleUrls: ['cart.component.css'],
-  providers: [CartService]
+  providers: [CartService, AuthenticationService]
 })
 export class CartComponent implements OnInit {
   cart: Observable<Book[]>;
   totalValue: number;
 
   constructor(
+    private authenticationService: AuthenticationService,
     private cartService: CartService
   ) { }
 
   ngOnInit() {
-    this.cart = this.cartService.getCartUser(46);
+    let auth = this.authenticationService.getAuth();
+    let options = this.authenticationService.getOptions(auth);
+
+    this.cart = this.cartService.getCartUser(options, 46);
   }
 }

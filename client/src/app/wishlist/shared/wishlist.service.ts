@@ -13,8 +13,8 @@ export class WishlistService {
     private http: Http
   ) { }
 
-  getWishlistByUser(userId: number) {
-    return this.http.get(environment.baseUrl + 'users/' + userId + '/wishlist')
+  getWishlistByUser(options, userId: number) {
+    return this.http.get(environment.baseUrl + 'users/' + userId + '/wishlist', options)
       .map((res: Response) => <Book[]>res.json()._embedded.books)
       .do((data) => this.toImage(data))
       .catch(this.handleError);

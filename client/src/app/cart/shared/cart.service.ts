@@ -13,10 +13,9 @@ export class CartService {
     private http: Http
   ) { }
 
-  getCartUser(userId: number) {
-    return this.http.get(environment.baseUrl + 'users/' + userId + '/cart')
+  getCartUser(options, userId: number) {
+    return this.http.get(environment.baseUrl + 'users/' + userId + '/cart', options)
       .map((res: Response) => <Book[]>res.json()._embedded.books)
-      .do((data) => console.log(data))
       .catch(this.handleError);
   }
 
