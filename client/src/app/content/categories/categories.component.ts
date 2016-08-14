@@ -33,12 +33,15 @@ export class CategoriesComponent implements OnInit {
   }
 
   isSelected(category: Category) {
-    return category.id === this.selectedCategory;
+    let categoryId = category['_links'].self.href.split("/").slice(-1);
+    return +categoryId === this.selectedCategory;
   }
 
   onSelect(category: Category) {
     let categoryBooks = category['_links'].books.href;
     let categoryUrl = categoryBooks.split("/").slice(-3).join("/");
+    this.selectedCategory = +categoryBooks.split("/").slice(-2)[0];
+
     this.router.navigate(['/content/' + categoryUrl]);
   }
 }
