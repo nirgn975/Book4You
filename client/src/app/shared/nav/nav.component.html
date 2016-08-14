@@ -2,7 +2,7 @@
   <!-- The actions bar -->
   <div id="user-actions" class="row">
     <div class="col-sm-12 col-md-10">
-      <a (click)="toWishlist()">רשימת הקניות שלי</a>
+      <a *ngIf="haveAuth" (click)="toWishlist()">רשימת הקניות שלי</a>
       <a (click)="showLogin()">התחבר</a>
     </div>
   </div>
@@ -26,7 +26,7 @@
       </div>
 
       <!-- Cart -->
-      <div id="cart" class="col-sm-4 col-md-2">
+      <div id="cart" class="col-sm-4 col-md-2" *ngIf="haveAuth">
         <h3>עגלת קניות</h3>
         <a (click)="toCart()">3 פריטים | 240.00 ₪</a>
       </div>
@@ -73,12 +73,6 @@
                 </div>
               </div>
             </div>
-          </div>
-          <div class="checkbox">
-            <label>
-              <input type="checkbox">
-              <p>זכור אותי</p>
-            </label>
           </div>
         </div>
 

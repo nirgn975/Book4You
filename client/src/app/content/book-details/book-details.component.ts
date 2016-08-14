@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 
+import { AuthenticationService } from '../../shared/authentication.service';
 import { BookService } from '../shared/book.service';
 import { Book } from '../shared/book.model';
 
@@ -10,7 +11,7 @@ import { Book } from '../shared/book.model';
   selector: 'bfy-book-details',
   templateUrl: 'book-details.component.html',
   styleUrls: ['book-details.component.css'],
-  providers: [BookService]
+  providers: [BookService, AuthenticationService]
 })
 export class BookDetailsComponent implements OnInit, OnDestroy {
   book: Observable<Book>;
@@ -19,15 +20,19 @@ export class BookDetailsComponent implements OnInit, OnDestroy {
   private sub: any;
 
   constructor(
+    private authenticationService: AuthenticationService,
     private route: ActivatedRoute,
     private router: Router,
     private bookService: BookService
   ) {}
 
   ngOnInit() {
+    let auth = this.authenticationService.getAuth();
+    let options = this.authenticationService.getOptions(auth);
+
     this.sub = this.route.params.subscribe(params => {
       this.bookId = +params['bookId'];
-      this.bookService.getBookById(this.bookId).subscribe(res => this.book = res);
+      this.bookService.getBookById(options, this.bookId).subscribe(res => this.book = res);
     });
   }
 
@@ -36,7 +41,10 @@ export class BookDetailsComponent implements OnInit, OnDestroy {
   }
 
   deleteBook() {
-    this.bookService.deleteBook(String(this.bookId)).subscribe(
+    let auth = this.authenticationService.getAuth();
+    let options = this.authenticationService.getOptions(auth);
+
+    this.bookService.deleteBook(options, String(this.bookId)).subscribe(
       data => function(data) {
         if (data.ok) {
           this.router.navigate(['']);

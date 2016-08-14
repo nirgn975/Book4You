@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { FormGroup, Validators, FormBuilder,
   REACTIVE_FORM_DIRECTIVES } from '@angular/forms';
 
+import { AuthenticationService } from '../../../shared/authentication.service';
 import { CategoryService } from '../../shared/category.service';
 import { Category } from '../../shared/category.model';
 import { Utils } from '../shared/utils';
@@ -14,13 +15,14 @@ import { Utils } from '../shared/utils';
   templateUrl: 'add-category.component.html',
   styleUrls: ['add-category.component.css'],
   directives: [REACTIVE_FORM_DIRECTIVES],
-  providers: [CategoryService, Utils]
+  providers: [CategoryService, Utils, AuthenticationService]
 })
 export class AddCategoryComponent implements OnInit {
   categoryForm: FormGroup;
   categories: Observable<Category[]>;
 
   constructor(
+    private authenticationService: AuthenticationService,
     private categoryService: CategoryService,
     private route: ActivatedRoute,
     private utils: Utils,
@@ -32,13 +34,18 @@ export class AddCategoryComponent implements OnInit {
   }
 
   ngOnInit() {
-     this.categories = this.categoryService.getCategories();
+    let auth = this.authenticationService.getAuth();
+    let options = this.authenticationService.getOptions(auth);
+
+     this.categories = this.categoryService.getCategories(options);
   }
 
   onSubmit(event) {
     event.preventDefault();
+    let auth = this.authenticationService.getAuth();
+    let options = this.authenticationService.getOptions(auth);
 
-    this.categoryService.addNewCategory(this.categoryForm['_value']).subscribe(
+    this.categoryService.addNewCategory(options, this.categoryForm['_value']).subscribe(
       data => this.utils.callback(data)
     );
   }

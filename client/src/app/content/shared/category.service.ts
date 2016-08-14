@@ -8,36 +8,37 @@ import { Category } from './category.model';
 
 @Injectable()
 export class CategoryService {
-  headers = new Headers();
-  options = new RequestOptions({ headers: this.headers });
 
   constructor(
     private http: Http
-  ) {
-      this.headers.append('Content-Type', 'application/json');
-      // this.headers.append('Authorization', 'Basic ' + btoa('nirgn:password'));
-    }
+  ) {}
 
-  getCategories() {
-    return this.http.get(environment.baseUrl + 'categories', this.headers )
+  getCategories(options) {
+    return this.http.get(environment.baseUrl + 'categories', options)
       .map((res: Response) => res.json()._embedded.categories)
       .catch(this.handleError);
   }
 
-  getCategory(categoryId: number) {
-    return this.http.get(environment.baseUrl + 'categories/' + categoryId)
+  getCategory(options, categoryId: number) {
+    return this.http.get(environment.baseUrl + 'categories/' + categoryId, options)
       .map((res: Response) => res.json())
       .catch(this.handleError);
   }
 
-  addNewCategory(newCategory: string) {
-    return this.http.post(environment.baseUrl + 'categories', newCategory, this.options)
+  addNewCategory(options, newCategory: string) {
+    return this.http.post(environment.baseUrl + 'categories', newCategory, options)
         .map((res: Response) => res)
         .catch(this.handleError);
   }
 
   deleteCategory(categoryId: string) {
-    return this.http.delete(environment.baseUrl + 'categories/' + categoryId, this.options)
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Authorization', 'Basic ' + btoa('nirgn:password'));
+    let options = new RequestOptions({ headers: headers });
+
+    console.log(categoryId);
+    return this.http.delete(environment.baseUrl + 'categories/' + categoryId, options)
         .map((res: Response) => res)
         .catch(this.handleError);
   }
@@ -45,5 +46,4 @@ export class CategoryService {
   private handleError(error: Response) {
     return Observable.throw(error.json().error || 'Server error');
   }
-
 }
