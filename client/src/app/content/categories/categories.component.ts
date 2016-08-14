@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { ROUTER_DIRECTIVES, Router } from '@angular/router';
 
+import { AuthenticationService } from '../../shared/authentication.service';
 import { CategoryService } from '../shared/category.service';
 import { Category } from '../shared/category.model';
 
@@ -11,7 +12,7 @@ import { Category } from '../shared/category.model';
   templateUrl: 'categories.component.html',
   styleUrls: ['categories.component.css'],
   directives: [ROUTER_DIRECTIVES],
-  providers: [CategoryService]
+  providers: [CategoryService, AuthenticationService]
 })
 export class CategoriesComponent implements OnInit {
   categories: Observable<Category[]>;
@@ -20,11 +21,14 @@ export class CategoriesComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private categoryService: CategoryService
+    private categoryService: CategoryService,
+    private authenticationService: AuthenticationService
   ) {}
 
   ngOnInit() {
-    this.categories = this.categoryService.getCategories();
+    let auth = this.authenticationService.getAuth();
+    let options = this.authenticationService.getOptions(auth);
+    this.categories = this.categoryService.getCategories(options);
     this.selectedCategory = 1;
   }
 

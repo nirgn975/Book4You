@@ -17,16 +17,22 @@ export class AuthenticationService {
     if (this.getAuth()) {
       return this.getAuth();
     } else {
-      let headers = new Headers();
-      headers.append('Content-Type', 'application/json');
-      headers.append('Authorization', 'Basic ' + btoa(userName + ':' + password));
-      let options = new RequestOptions({ headers: headers });
+      let options = this.getOptions('Basic ' + btoa(userName + ':' + password));
 
       return this.http.get(environment.baseUrl, options)
         .map((res: Response) => res)
         .do((data) => this.saveData(data, 'Basic ' + btoa(userName + ':' + password)))
         .catch(this.handleError);
     }
+  }
+
+  getOptions(authorization: string) {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Authorization', authorization);
+    let options = new RequestOptions({ headers: headers });
+
+    return options;
   }
 
   getAuth() {

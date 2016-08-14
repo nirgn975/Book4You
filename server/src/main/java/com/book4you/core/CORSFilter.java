@@ -35,6 +35,5 @@ public class CORSFilter implements Filter {
         } else {
             chain.doFilter(req, res);
         }
-
     }
 }

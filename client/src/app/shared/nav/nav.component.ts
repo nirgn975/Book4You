@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AuthenticationService } from '../authentication.service';
@@ -10,8 +10,9 @@ import { AuthenticationService } from '../authentication.service';
   styleUrls: ['nav.component.css'],
   providers: [AuthenticationService]
 })
-export class NavComponent {
+export class NavComponent implements OnInit {
   private LoginIsVisible: boolean;
+  private haveAuth: boolean = false;
   private user = {
     'email': '',
     'password': ''
@@ -21,6 +22,10 @@ export class NavComponent {
     private authenticationService: AuthenticationService,
     private router: Router
   ) {}
+
+  ngOnInit() {
+    this.haveAuth = this.authenticationService.checkAuth();
+  }
 
   showLogin() {
     this.LoginIsVisible = true;
