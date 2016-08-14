@@ -26,10 +26,13 @@ export class CategoriesComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    // Get options with auth, to get the categories.
     let auth = this.authenticationService.getAuth();
     let options = this.authenticationService.getOptions(auth);
     this.categories = this.categoryService.getCategories(options);
-    this.selectedCategory = 1;
+
+    // Get the current category from the current url.
+    this.selectedCategory = +this.router.url.split("/").slice(-2)[0];
   }
 
   isSelected(category: Category) {
