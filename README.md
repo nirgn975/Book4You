@@ -15,6 +15,10 @@ Book4You is a university project for [#20503 - Workshop: Advanced Programming wi
 ## Installation
 Install the project for development.
 
+How the project looks after installing it:
+
+![The project after install](https://github.com/nirgn975/Book4You/blob/master/project_after_installation.png)
+
 ### **Client side:**
 
 1. Run `npm install -g angular-cli` to install angular-cli.
@@ -53,10 +57,12 @@ Install the project for development.
   * Run `ng test --no-watch`.
   * Run `ng e2e`.
 
+
   **Server side:**
 
   * Not yet..
 
 
 ## License
-MIT
+
+ISC
