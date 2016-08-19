@@ -8,10 +8,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
@@ -40,7 +37,7 @@ public class User extends BaseEntity {
     @JsonIgnore
     private String[] roles;
 
-    @OneToMany()
+    @OneToOne(cascade = CascadeType.ALL)
     private WishList wishList;
 
     @OneToMany()
@@ -57,6 +54,7 @@ public class User extends BaseEntity {
         this.username = username;
         setPassword(password);
         this.roles = roles;
+        this.wishList = new WishList(this);
         this.cart = new ArrayList<>();
     }
 
@@ -101,6 +99,10 @@ public class User extends BaseEntity {
     }
 
     public WishList getWishList() { return this.wishList; }
+
+    public void addBookToWishList(Book book) { this.wishList.addBook(book); }
+
+    public void removeBookFromWishList(Book book) { this.wishList.removeBook(book); }
 
     public List<Book> getCart() { return cart; }
 }

@@ -7,6 +7,7 @@ import com.book4you.category.Category;
 import com.book4you.category.CategoryRepository;
 import com.book4you.user.User;
 import com.book4you.user.UserRepository;
+import com.book4you.wishList.WishListRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -19,13 +20,15 @@ public class DatabaseLoader implements ApplicationRunner {
     private final BookRepository books;
     private final CategoryRepository categories;
     private final UserRepository users;
+    private final WishListRepository wishList;
     private Utils utils = new Utils();
 
     @Autowired
-    public DatabaseLoader(BookRepository books, CategoryRepository category, UserRepository users) {
+    public DatabaseLoader(BookRepository books, CategoryRepository category, UserRepository users, WishListRepository wishList) {
         this.books = books;
         this.categories = category;
         this.users = users;
+        this.wishList = wishList;
     }
 
     @Override
@@ -258,11 +261,12 @@ public class DatabaseLoader implements ApplicationRunner {
 
         int y = 0;
         for (User u: dummyUsers) {
-            u.addBookToWishlist(dummyBooks[0][y]);
-            u.addBookToWishlist(dummyBooks[0][y + 1]);
+            u.addBookToWishList(dummyBooks[0][y]);
+            u.addBookToWishList(dummyBooks[0][y + 1]);
 
-            u.addBookToCart(dummyBooks[1][y]);
-            u.addBookToCart(dummyBooks[3][y]);
+            u.addBookToWishList(dummyBooks[1][y]);
+            u.addBookToWishList(dummyBooks[3][y]);
+
             y++;
             users.save(u);
         }
