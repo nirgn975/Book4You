@@ -3,6 +3,7 @@ package com.book4you.user;
 
 import com.book4you.book.Book;
 import com.book4you.core.BaseEntity;
+import com.book4you.wishList.WishList;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -40,7 +41,7 @@ public class User extends BaseEntity {
     private String[] roles;
 
     @OneToMany()
-    private List<Book> wishlist;
+    private WishList wishList;
 
     @OneToMany()
     private List<Book> cart;
@@ -56,7 +57,6 @@ public class User extends BaseEntity {
         this.username = username;
         setPassword(password);
         this.roles = roles;
-        this.wishlist = new ArrayList<>();
         this.cart = new ArrayList<>();
     }
 
@@ -100,11 +100,7 @@ public class User extends BaseEntity {
         this.roles = roles;
     }
 
-    public List<Book> getWishlist() { return wishlist; }
+    public WishList getWishList() { return this.wishList; }
 
     public List<Book> getCart() { return cart; }
-
-    public void addBookToWishlist(Book book) { this.wishlist.add(book); }
-
-    public void addBookToCart(Book book) { this.cart.add(book); }
 }
