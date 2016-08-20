@@ -37,17 +37,28 @@ export class BookDetailsComponent implements OnInit {
     this.auth = this.authenticationService.getAuth();
     this.options = this.authenticationService.getOptions(this.auth);
     this.userId = this.authenticationService.getUserId();
-    this.wishlistService.getWishList(this.options, this.userId).subscribe(
-      (data) => {
-        this.wishList = data;
-        this.route.params.subscribe(params => {
-          this.bookId = +params['bookId'];
-          this.bookService.getBookById(this.options, this.bookId).subscribe(
-            (res) => this.book = res
-          );
-        });
-      }
-    );
+
+    // Get cart details only of login.
+    if (this.userId) {
+      this.wishlistService.getWishList(this.options, this.userId).subscribe(
+        (data) => {
+          this.wishList = data;
+          this.route.params.subscribe(params => {
+            this.bookId = +params['bookId'];
+            this.bookService.getBookById(this.options, this.bookId).subscribe(
+              (res) => this.book = res
+            );
+          });
+        }
+      );
+    } else {
+      this.route.params.subscribe(params => {
+        this.bookId = +params['bookId'];
+        this.bookService.getBookById(this.options, this.bookId).subscribe(
+          (res) => this.book = res
+        );
+      });
+    }
   }
 
   deleteBook() {
