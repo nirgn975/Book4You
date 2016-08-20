@@ -1,7 +1,7 @@
 <div class="col-sm-12 col-md-8 col-lg-9 thumbnail pull-right">
   <div *ngIf="book">
     <div class="col-sm-8">
-      <span class="glyphicon glyphicon-star-empty" aria-hidden="true" (click)="addBookToWishList(book)"></span>
+      <span class="glyphicon glyphicon-star-empty" aria-hidden="true" (click)="addBookToWishList(book.id)"></span>
       <h2>{{ book.title }}</h2>
 
       <span>ספר מאת: {{ book.author }}</span>

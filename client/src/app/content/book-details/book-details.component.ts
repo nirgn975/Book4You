@@ -20,6 +20,9 @@ export class BookDetailsComponent implements OnInit, OnDestroy {
   errorMessage: String;
   bookId: number;
   private sub: any;
+  auth: string;
+  options: any;
+  userId: string;
 
   constructor(
     private wishlistService: WishlistService,
@@ -31,12 +34,13 @@ export class BookDetailsComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    let auth = this.authenticationService.getAuth();
-    let options = this.authenticationService.getOptions(auth);
+    this.auth = this.authenticationService.getAuth();
+    this.options = this.authenticationService.getOptions(this.auth);
+    this.userId = this.authenticationService.getUserId();
 
     this.sub = this.route.params.subscribe(params => {
       this.bookId = +params['bookId'];
-      this.bookService.getBookById(options, this.bookId).subscribe(res => this.book = res);
+      this.bookService.getBookById(this.options, this.bookId).subscribe(res => this.book = res);
     });
   }
 
@@ -45,10 +49,7 @@ export class BookDetailsComponent implements OnInit, OnDestroy {
   }
 
   deleteBook() {
-    let auth = this.authenticationService.getAuth();
-    let options = this.authenticationService.getOptions(auth);
-
-    this.bookService.deleteBook(options, String(this.bookId)).subscribe(
+    this.bookService.deleteBook(this.options, String(this.bookId)).subscribe(
       data => function(data) {
         if (data.ok) {
           this.router.navigate(['']);
@@ -59,31 +60,23 @@ export class BookDetailsComponent implements OnInit, OnDestroy {
     );
   }
 
-  addBookToWishList(book) {
-    let auth = this.authenticationService.getAuth();
-    let options = this.authenticationService.getOptions(auth);
-    delete book._links;
-    book.category = "categories/13";
-
-    let foo = {
-      "_embedded": {
-          "books": [
-              book
-          ]
-      }
+  addBookToWishList(bookId: string) {
+    this.wishlistService.addBookToWishList(this.options, this.userId, bookId).subscribe(
+      (data) => this.addToWishListCallBack(data)
+    );
   }
 
-    console.log(book);
-    this.bookService.addBookToWishList(options, book).subscribe()
+  addToWishListCallBack(data) {
+    if (data.ok) {
+      location.reload();
+    } else {
+      alert("Something went wrong, please try again.");
+    }
   }
 
   addBookToCart(bookId: string) {
-    let auth = this.authenticationService.getAuth();
-    let options = this.authenticationService.getOptions(auth);
-    let UserId = this.authenticationService.getUserId();
-
-    this.cartService.getCart(options, UserId).subscribe(
-      (data) => this.cartService.addBookToCart(options, data.id, bookId).subscribe(
+    this.cartService.getCart(this.options, this.userId).subscribe(
+      (data) => this.cartService.addBookToCart(this.options, data.id, bookId).subscribe(
         (data) => location.reload()
       )
     );
