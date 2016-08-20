@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import { Router } from '@angular/router';
 
 import { AuthenticationService } from '../shared/authentication.service';
 import { WishlistService } from './shared/wishlist.service';
@@ -20,7 +21,8 @@ export class WishlistComponent implements OnInit {
 
   constructor(
     private authenticationService: AuthenticationService,
-    private wishlistService: WishlistService
+    private wishlistService: WishlistService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -35,5 +37,9 @@ export class WishlistComponent implements OnInit {
     this.wishlistService.removeBookFromWishList(this.options, this.userId, bookId).subscribe(
       (data) => data.ok ? location.reload() : alert("Something went wrong, please try again.")
     );
+  }
+
+  goToBook(bookId: string) {
+    this.router.navigate(['content/books/' + bookId]);
   }
 }
