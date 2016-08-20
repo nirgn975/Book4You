@@ -14,7 +14,7 @@
       <div class="price">
         <p>{{ book.price }}₪</p>
       </div>
-      <button class="btn btn-purchase">
+      <button class="btn btn-purchase" (click)="addBookToCart(book.id)">
         <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
         הוסף לעגלה
       </button>

@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { AuthenticationService } from '../shared/authentication.service';
 import { CartService } from './shared/cart.service';
 import { Book } from '../content/shared/book.model';
+import { Cart } from './shared/cart.model';
 
 @Component({
   moduleId: module.id,
@@ -13,8 +14,12 @@ import { Book } from '../content/shared/book.model';
   providers: [CartService, AuthenticationService]
 })
 export class CartComponent implements OnInit {
-  cart: Observable<Book[]>;
+  private cart: Cart = new Cart();
+  books: Observable<Book[]>;
   totalValue: number;
+  auth: string;
+  options: any;
+  userId: string;
 
   constructor(
     private authenticationService: AuthenticationService,
@@ -22,10 +27,25 @@ export class CartComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    let auth = this.authenticationService.getAuth();
-    let options = this.authenticationService.getOptions(auth);
-    let userId = this.authenticationService.getUserId();
+    this.auth = this.authenticationService.getAuth();
+    this.options = this.authenticationService.getOptions(this.auth);
+    this.userId = this.authenticationService.getUserId();
 
-    this.cart = this.cartService.getCartUser(options, userId);
+    this.cartService.getCart(this.options, this.userId).subscribe(
+      (data) => this.callback(data)
+    );
+  }
+
+  callback(data) {
+    this.cart = data;
+    this.books = this.cartService.getCartByUser(this.options, data.id);
+  }
+
+  removeBook(bookId: string) {
+    console.log(bookId);
+    console.log(this.cart);
+    this.cartService.removeBookFromCart(this.options, this.cart.id, bookId).subscribe(
+      (data) => location.reload()
+    );
   }
 }
