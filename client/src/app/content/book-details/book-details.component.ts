@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 
@@ -15,11 +15,10 @@ import { Book } from '../shared/book.model';
   styleUrls: ['book-details.component.css'],
   providers: [BookService, AuthenticationService, WishlistService, CartService]
 })
-export class BookDetailsComponent implements OnInit, OnDestroy {
+export class BookDetailsComponent implements OnInit {
   book: Observable<Book>;
   errorMessage: String;
   bookId: number;
-  private sub: any;
   auth: string;
   options: any;
   userId: string;
@@ -38,14 +37,10 @@ export class BookDetailsComponent implements OnInit, OnDestroy {
     this.options = this.authenticationService.getOptions(this.auth);
     this.userId = this.authenticationService.getUserId();
 
-    this.sub = this.route.params.subscribe(params => {
+    this.route.params.subscribe(params => {
       this.bookId = +params['bookId'];
       this.bookService.getBookById(this.options, this.bookId).subscribe(res => this.book = res);
     });
-  }
-
-  ngOnDestroy() {
-    this.sub.unsubscribe();
   }
 
   deleteBook() {
@@ -62,16 +57,8 @@ export class BookDetailsComponent implements OnInit, OnDestroy {
 
   addBookToWishList(bookId: string) {
     this.wishlistService.addBookToWishList(this.options, this.userId, bookId).subscribe(
-      (data) => this.addToWishListCallBack(data)
+      (data) => data.ok ? location.reload() : alert("Something went wrong, please try again.")
     );
-  }
-
-  addToWishListCallBack(data) {
-    if (data.ok) {
-      location.reload();
-    } else {
-      alert("Something went wrong, please try again.");
-    }
   }
 
   addBookToCart(bookId: string) {
