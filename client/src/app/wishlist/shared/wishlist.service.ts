@@ -13,21 +13,20 @@ export class WishlistService {
     private http: Http
   ) { }
 
-  getWishlistByUser(options, userId: number) {
-    return this.http.get(environment.baseUrl + 'users/' + userId + '/wishlist', options)
-      .map((res: Response) => <Book[]>res.json()._embedded.books)
-      .do((data) => this.toImage(data))
+  getWishList(options, userId: string) {
+    return this.http.get(environment.baseUrl + 'users/' + userId + '/wishList', options)
+      .map((res: Response) => res.json()._embedded.books)
+      .catch(this.handleError);
+  }
+
+  removeBookFromWishList(options,  userId: string, bookId: string) {
+    return this.http.delete(environment.baseUrl + 'users/' + userId + '/wishList/' + bookId, options)
+      .map((res: Response) => res)
       .catch(this.handleError);
   }
 
   private handleError(error: Response) {
     console.error(error);
     return Observable.throw(error.json().error || 'Server error');
-  }
-
-  toImage(items: Book[]) {
-    for (let item of items) {
-      item.picture = 'data:image/png;base64,' + item.picture;
-    }
   }
 }

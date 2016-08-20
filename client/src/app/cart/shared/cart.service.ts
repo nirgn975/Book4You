@@ -13,7 +13,7 @@ export class CartService {
     private http: Http
   ) { }
 
-  getCartUser(options, userId: number) {
+  getCartUser(options, userId: string) {
     return this.http.get(environment.baseUrl + 'users/' + userId + '/cart', options)
       .map((res: Response) => <Book[]>res.json()._embedded.books)
       .catch(this.handleError);

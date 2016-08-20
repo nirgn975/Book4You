@@ -6,6 +6,7 @@ import { FormGroup, Validators, FormBuilder,
 
 import { AuthenticationService } from '../../../shared/authentication.service';
 import { CategoryService } from '../../shared/category.service';
+import { CategoriesComponent } from '../../categories/categories.component';
 import { Category } from '../../shared/category.model';
 import { Utils } from '../shared/utils';
 
@@ -48,7 +49,10 @@ export class DeleteCategoryComponent implements OnInit {
 
     let categoryId = this.utils.getCategoryId(this.delCategoryForm['_value'].category);
     this.categoryService.deleteCategory(categoryId).subscribe(
-      data => this.utils.callback(data)
+      (data) => function(data) {
+
+        this.utils.callback(data);
+      }
     );
   }
 }

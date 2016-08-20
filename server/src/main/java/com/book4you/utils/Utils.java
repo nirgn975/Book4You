@@ -1,8 +1,7 @@
-package com.book4you.core;
+package com.book4you.utils;
 
 import java.io.File;
 import java.io.FileInputStream;
-
 
 public class Utils {
     /**

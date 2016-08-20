@@ -13,7 +13,7 @@ import { Book } from '../content/shared/book.model';
   providers: [WishlistService, AuthenticationService]
 })
 export class WishlistComponent implements OnInit {
-  wishlist: Observable<Book[]>;
+  wishList: Observable<Book[]>;
 
   constructor(
     private authenticationService: AuthenticationService,
@@ -23,8 +23,18 @@ export class WishlistComponent implements OnInit {
   ngOnInit() {
     let auth = this.authenticationService.getAuth();
     let options = this.authenticationService.getOptions(auth);
+    let userId = this.authenticationService.getUserId();
 
-    this.wishlist = this.wishlistService.getWishlistByUser(options, 46);
+    this.wishList = this.wishlistService.getWishList(options, userId);
   }
 
+  removeBook(bookId: string) {
+    let auth = this.authenticationService.getAuth();
+    let options = this.authenticationService.getOptions(auth);
+    let userId = this.authenticationService.getUserId();
+
+    this.wishlistService.removeBookFromWishList(options, userId, bookId).subscribe(
+      (data) => data.ok ? console.log('ok') : alert("Something went wrong, please try again.")
+    );
+  }
 }

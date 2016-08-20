@@ -4,7 +4,7 @@
   </div>
   <div class="thumbnail-content">
     <h3>{{ book.title }}</h3>
-    <img src="{{ book.picture }}">
+    <img src="{{ 'data:image/png;base64,' + book.picture }}">
     <span>{{ book.author }}</span>
     <div class="price">
       <p>{{ book.price }}₪</p>
