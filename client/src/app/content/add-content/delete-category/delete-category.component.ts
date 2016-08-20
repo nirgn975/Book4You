@@ -49,10 +49,7 @@ export class DeleteCategoryComponent implements OnInit {
 
     let categoryId = this.utils.getCategoryId(this.delCategoryForm['_value'].category);
     this.categoryService.deleteCategory(categoryId).subscribe(
-      (data) => function(data) {
-
-        this.utils.callback(data);
-      }
+      (data) => this.utils.callback(data)
     );
   }
 }
