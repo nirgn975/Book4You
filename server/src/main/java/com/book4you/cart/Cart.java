@@ -20,14 +20,19 @@ public class Cart extends BaseEntity {
 
     @NotNull
     @Min(0)
-    private int total;
+    private int totalAmount;
+
+    @NotNull
+    @Min(0)
+    private int totalItems;
 
     @OneToOne
     private User user;
 
     protected Cart() {
         super();
-        this.total = 0;
+        this.totalAmount = 0;
+        this.totalItems = 0;
         books = new ArrayList<>();
     }
 
@@ -40,17 +45,23 @@ public class Cart extends BaseEntity {
         return books;
     }
 
-    public int getTotal() {
-        return total;
+    public int getTotalAmount() {
+        return totalAmount;
+    }
+
+    public int getTotalItems() {
+        return totalItems;
     }
 
     public void addBook(Book book) {
-        total += book.getPrice();
+        totalAmount += book.getPrice();
+        totalItems += 1;
         books.add(book);
     }
 
     public void removeBook(Book book) {
-        total -= book.getPrice();
+        totalAmount -= book.getPrice();
+        totalItems -= 1;
         books.remove(book);
     }
 }

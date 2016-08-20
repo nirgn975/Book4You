@@ -19,6 +19,14 @@ export class CartService {
       .catch(this.handleError);
   }
 
+  getTotalsCart(options, userId: string) {
+    return this.http.get(environment.baseUrl + 'users/' + userId + '/cart', options)
+      .map((res: Response) => <Book[]>res.json())
+      .do(data => console.log(data))
+      .catch(this.handleError);
+
+  }
+
   private handleError(error: Response) {
     console.error(error);
     return Observable.throw(error.json().error || 'Server error');

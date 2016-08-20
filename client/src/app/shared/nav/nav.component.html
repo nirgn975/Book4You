@@ -28,7 +28,9 @@
       <!-- Cart -->
       <div id="cart" class="col-sm-4 col-md-2" *ngIf="haveAuth">
         <h3>עגלת קניות</h3>
-        <a (click)="toCart()">3 פריטים | 240.00 ₪</a>
+        <a (click)="toCart()">
+          {{ cart.totalItems + ' פריטים' + ' | ' + '₪' + cart.totalAmount}}
+        </a>
       </div>
     </div>
   </div>
