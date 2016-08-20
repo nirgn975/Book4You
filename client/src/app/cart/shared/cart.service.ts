@@ -13,9 +13,27 @@ export class CartService {
     private http: Http
   ) { }
 
-  getCartUser(options, userId: string) {
-    return this.http.get(environment.baseUrl + 'users/' + userId + '/cart', options)
+  getCartByUser(options, cartId: number) {
+    return this.http.get(environment.baseUrl + 'carts/' + cartId + '/books', options)
       .map((res: Response) => <Book[]>res.json()._embedded.books)
+      .catch(this.handleError);
+  }
+
+  getCart(options, userId: string) {
+    return this.http.get(environment.baseUrl + 'users/' + userId + '/cart', options)
+      .map((res: Response) => <Book[]>res.json())
+      .catch(this.handleError);
+  }
+
+  addBookToCart(options, cartId: string, bookId: string) {
+    return this.http.patch(environment.baseUrl + 'carts/' + cartId + '/addToCart/' + bookId, options)
+      .map((res: Response) => res)
+      .catch(this.handleError);
+  }
+
+  removeBookFromCart(options, cartId: number, bookId: string) {
+    return this.http.patch(environment.baseUrl + 'carts/' + cartId + '/removeFromCart/' + bookId, options)
+      .map((res: Response) => res)
       .catch(this.handleError);
   }
 
