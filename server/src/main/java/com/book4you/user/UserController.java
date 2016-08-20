@@ -24,19 +24,41 @@ public class UserController {
     @RequestMapping(value = "{userId}/wishList/{bookId}", method = RequestMethod.PATCH)
     public ResponseEntity addBookToWishList(@PathVariable("userId") int userId, @PathVariable("bookId") int bookId) {
         try {
-            // Find user.
-            User user = users.findOne(new Long(userId));
-
-            // Find book.
-            Book book = books.findOne(new Long(bookId));
-
             // Add the book to user's wish list.
-            user.addBookToWishList(book);
-            users.save(user);
+            findUser(userId).addBookToWishList(findBook(bookId));
+
+            // Save users.
+            users.save(findUser(userId));
         } catch (Exception ex) {
             return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
         }
 
         return new ResponseEntity<String>(HttpStatus.OK);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "{userId}/wishList/{bookId}", method = RequestMethod.DELETE)
+    public ResponseEntity removeBookFromWishList(@PathVariable("userId") int userId, @PathVariable("bookId") int bookId) {
+        try {
+            // Add the book to user's wish list.
+            findUser(userId).removeBookFromWishList(findBook(bookId));
+
+            // Save users.
+            users.save(findUser(userId));
+        } catch (Exception ex) {
+            return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+        }
+
+        return new ResponseEntity<String>(HttpStatus.OK);
+    }
+
+    private Book findBook(int bookId) {
+        Book book = books.findOne(new Long(bookId));
+        return book;
+    }
+
+    private User findUser(int userId) {
+        User user = users.findOne(new Long(userId));
+        return user;
     }
 }
