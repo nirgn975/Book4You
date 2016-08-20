@@ -13,18 +13,16 @@ export class CartService {
     private http: Http
   ) { }
 
-  getCartUser(options, userId: string) {
-    return this.http.get(environment.baseUrl + 'users/' + userId + '/cart', options)
+  getCartByUser(options, cartId: number) {
+    return this.http.get(environment.baseUrl + 'carts/' + cartId + '/books', options)
       .map((res: Response) => <Book[]>res.json()._embedded.books)
       .catch(this.handleError);
   }
 
-  getTotalsCart(options, userId: string) {
+  getCart(options, userId: string) {
     return this.http.get(environment.baseUrl + 'users/' + userId + '/cart', options)
       .map((res: Response) => <Book[]>res.json())
-      .do(data => console.log(data))
       .catch(this.handleError);
-
   }
 
   private handleError(error: Response) {

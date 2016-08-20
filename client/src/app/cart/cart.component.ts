@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { AuthenticationService } from '../shared/authentication.service';
 import { CartService } from './shared/cart.service';
 import { Book } from '../content/shared/book.model';
+import { Cart } from './shared/cart.model';
 
 @Component({
   moduleId: module.id,
@@ -13,7 +14,8 @@ import { Book } from '../content/shared/book.model';
   providers: [CartService, AuthenticationService]
 })
 export class CartComponent implements OnInit {
-  cart: Observable<Book[]>;
+  private cart: Cart = new Cart();
+  books: Observable<Book[]>;
   totalValue: number;
 
   constructor(
@@ -26,6 +28,16 @@ export class CartComponent implements OnInit {
     let options = this.authenticationService.getOptions(auth);
     let userId = this.authenticationService.getUserId();
 
-    this.cart = this.cartService.getCartUser(options, userId);
+    this.cartService.getCart(options, userId).subscribe(
+      (data) => this.callback(data)
+    );
+  }
+
+  callback(data) {
+    let auth = this.authenticationService.getAuth();
+    let options = this.authenticationService.getOptions(auth);
+
+    this.cart = data;
+    this.books = this.cartService.getCartByUser(options, data.id);
   }
 }

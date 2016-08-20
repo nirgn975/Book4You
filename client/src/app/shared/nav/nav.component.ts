@@ -32,7 +32,7 @@ export class NavComponent implements OnInit {
     let auth = this.authenticationService.getAuth();
     let options = this.authenticationService.getOptions(auth);
     let userId = this.authenticationService.getUserId();
-    this.cartService.getTotalsCart(options, userId).subscribe(
+    this.cartService.getCart(options, userId).subscribe(
       (data) => this.cart = data
     );
 
