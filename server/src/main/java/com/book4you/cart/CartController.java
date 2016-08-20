@@ -21,19 +21,41 @@ public class CartController {
     @RequestMapping(value = "{cartId}/addToCart/{bookId}", method = RequestMethod.PATCH)
     public ResponseEntity addToCart(@PathVariable("cartId") int cartId, @PathVariable("bookId") int bookId) {
         try {
-            // Get the cart.
-            Cart myCart = cart.findOne(new Long(cartId));
-
-            // Get the book.
-            Book book = books.findOne(new Long(bookId));
-
             // Add the book to the Cart.
-            myCart.addBook(book);
-            cart.save(myCart);
+            findCart(cartId).addBook(findBook(bookId));
+
+            // Save my cart.
+            cart.save(findCart(cartId));
         } catch (Exception ex) {
             return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
         }
 
         return new ResponseEntity<String>(HttpStatus.OK);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "{cartId}/removeFromCart/{bookId}", method = RequestMethod.PATCH)
+    public ResponseEntity removeFromCart(@PathVariable("cartId") int cartId, @PathVariable("bookId") int bookId) {
+        try {
+            // Add the book to the cart.
+            findCart(cartId).removeBook(findBook(bookId));
+
+            // Save my cart.
+            cart.save(findCart(cartId));
+        } catch (Exception ex) {
+            return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+        }
+
+        return new ResponseEntity<String>(HttpStatus.OK);
+    }
+
+    private Book findBook(int bookId) {
+        Book book = books.findOne(new Long(bookId));
+        return book;
+    }
+
+    private Cart findCart(int cartId) {
+        Cart myCart = cart.findOne(new Long(cartId));
+        return myCart;
     }
 }

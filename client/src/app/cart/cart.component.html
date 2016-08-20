@@ -8,9 +8,10 @@
 </div>
 
 <div class="list-group col-sm-offset-1 col-sm-2">
-  <a href="#" class="list-group-item" *ngFor="let item of books | async">
+  <a class="list-group-item" *ngFor="let item of books | async">
     <h4 class="list-group-item-heading">{{ item.title }}</h4>
     <h5 class="list-group-item-text">₪ {{ item.price }}</h5>
+    <p class="remove-book" (click)="removeBook(item.id)">(הסר)</p>
   </a>
 
   <a href="#" class="list-group-item">

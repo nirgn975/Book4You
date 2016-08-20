@@ -29,7 +29,12 @@ export class CartService {
     return this.http.patch(environment.baseUrl + 'carts/' + cartId + '/addToCart/' + bookId, options)
       .map((res: Response) => res)
       .catch(this.handleError);
+  }
 
+  removeBookFromCart(options, cartId: number, bookId: string) {
+    return this.http.patch(environment.baseUrl + 'carts/' + cartId + '/removeFromCart/' + bookId, options)
+      .map((res: Response) => res)
+      .catch(this.handleError);
   }
 
   private handleError(error: Response) {
