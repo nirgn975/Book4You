@@ -17,9 +17,9 @@ export class NavComponent implements OnInit {
   private LoginIsVisible: boolean;
   private cart: Cart = new Cart();
   private haveAuth: boolean = false;
-  auth: string;
-  options: any;
-  userId: string;
+  private auth: string;
+  private options: any;
+  private userId: string;
   private user = {
     'email': '',
     'password': ''

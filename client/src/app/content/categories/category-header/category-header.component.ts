@@ -11,7 +11,7 @@ import { AuthenticationService } from '../../../shared/authentication.service';
   providers: [AuthenticationService]
 })
 export class CategoryHeaderComponent implements OnInit {
-  haveAuth: boolean = false;
+  private haveAuth: boolean = false;
 
   constructor(
     private authenticationService: AuthenticationService,

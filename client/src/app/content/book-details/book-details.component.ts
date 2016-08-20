@@ -16,13 +16,13 @@ import { Book } from '../shared/book.model';
   providers: [BookService, AuthenticationService, WishlistService, CartService]
 })
 export class BookDetailsComponent implements OnInit {
-  book: Observable<Book>;
-  wishList: Book[];
-  errorMessage: String;
-  bookId: number;
-  auth: string;
-  options: any;
-  userId: string;
+  private book: Observable<Book>;
+  private wishList: Book[];
+  private errorMessage: String;
+  private bookId: number;
+  private auth: string;
+  private options: any;
+  private userId: string;
 
   constructor(
     private wishlistService: WishlistService,

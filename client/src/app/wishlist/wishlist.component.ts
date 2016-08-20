@@ -14,10 +14,10 @@ import { Book } from '../content/shared/book.model';
   providers: [WishlistService, AuthenticationService]
 })
 export class WishlistComponent implements OnInit {
-  wishList: Observable<Book[]>;
-  auth: string;
-  options: any;
-  userId: string;
+  private wishList: Observable<Book[]>;
+  private auth: string;
+  private options: any;
+  private userId: string;
 
   constructor(
     private authenticationService: AuthenticationService,
