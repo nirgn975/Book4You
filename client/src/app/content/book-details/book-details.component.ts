@@ -17,6 +17,7 @@ import { Book } from '../shared/book.model';
 })
 export class BookDetailsComponent implements OnInit {
   book: Observable<Book>;
+  wishList: Book[];
   errorMessage: String;
   bookId: number;
   auth: string;
@@ -36,22 +37,22 @@ export class BookDetailsComponent implements OnInit {
     this.auth = this.authenticationService.getAuth();
     this.options = this.authenticationService.getOptions(this.auth);
     this.userId = this.authenticationService.getUserId();
-
-    this.route.params.subscribe(params => {
-      this.bookId = +params['bookId'];
-      this.bookService.getBookById(this.options, this.bookId).subscribe(res => this.book = res);
-    });
+    this.wishlistService.getWishList(this.options, this.userId).subscribe(
+      (data) => {
+        this.wishList = data;
+        this.route.params.subscribe(params => {
+          this.bookId = +params['bookId'];
+          this.bookService.getBookById(this.options, this.bookId).subscribe(
+            (res) => this.book = res
+          );
+        });
+      }
+    );
   }
 
   deleteBook() {
     this.bookService.deleteBook(this.options, String(this.bookId)).subscribe(
-      data => function(data) {
-        if (data.ok) {
-          this.router.navigate(['']);
-        } else {
-          alert("Something went wrong, please try again.");
-        }
-      }
+      (data) => data.ok ? this.router.navigate(['']) : alert("Something went wrong, please try again.")
     );
   }
 
@@ -67,5 +68,14 @@ export class BookDetailsComponent implements OnInit {
         (data) => location.reload()
       )
     );
+  }
+
+  checkIfInWishList(bookId: number) {
+    for (let item of this.wishList) {
+      if (bookId == item.id) {
+        return true;
+      }
+    }
+    return false;
   }
 }
