@@ -34,7 +34,7 @@ export class WishlistComponent implements OnInit {
     let userId = this.authenticationService.getUserId();
 
     this.wishlistService.removeBookFromWishList(options, userId, bookId).subscribe(
-      (data) => data.ok ? console.log('ok') : alert("Something went wrong, please try again.")
+      (data) => data.ok ? location.reload() : alert("Something went wrong, please try again.")
     );
   }
 }
