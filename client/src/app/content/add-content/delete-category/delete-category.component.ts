@@ -19,8 +19,8 @@ import { Utils } from '../shared/utils';
   providers: [CategoryService, Utils, AuthenticationService]
 })
 export class DeleteCategoryComponent implements OnInit {
-  delCategoryForm: FormGroup;
-  categories: Observable<Category[]>;
+  private delCategoryForm: FormGroup;
+  private categories: Observable<Category[]>;
 
   constructor(
     private authenticationService: AuthenticationService,
@@ -49,10 +49,7 @@ export class DeleteCategoryComponent implements OnInit {
 
     let categoryId = this.utils.getCategoryId(this.delCategoryForm['_value'].category);
     this.categoryService.deleteCategory(categoryId).subscribe(
-      (data) => function(data) {
-
-        this.utils.callback(data);
-      }
+      (data) => this.utils.callback(data)
     );
   }
 }

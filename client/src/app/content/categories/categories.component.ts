@@ -15,9 +15,8 @@ import { Category } from '../shared/category.model';
   providers: [CategoryService, AuthenticationService]
 })
 export class CategoriesComponent implements OnInit {
-  categories: Observable<Category[]>;
+  private categories: Observable<Category[]>;
   private selectedCategory: number;
-  private sub: any;
 
   constructor(
     private router: Router,

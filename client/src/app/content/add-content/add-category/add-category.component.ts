@@ -18,8 +18,8 @@ import { Utils } from '../shared/utils';
   providers: [CategoryService, Utils, AuthenticationService]
 })
 export class AddCategoryComponent implements OnInit {
-  categoryForm: FormGroup;
-  categories: Observable<Category[]>;
+  private categoryForm: FormGroup;
+  private categories: Observable<Category[]>;
 
   constructor(
     private authenticationService: AuthenticationService,

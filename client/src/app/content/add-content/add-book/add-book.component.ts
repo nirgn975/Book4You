@@ -18,8 +18,8 @@ import { Utils } from '../shared/utils';
   providers: [CategoryService, BookService, Utils, AuthenticationService]
 })
 export class AddBookComponent {
-  bookForm: FormGroup;
-  categories: Observable<Category[]>;
+  private bookForm: FormGroup;
+  private categories: Observable<Category[]>;
 
   constructor(
     private authenticationService: AuthenticationService,

@@ -17,6 +17,9 @@ export class NavComponent implements OnInit {
   private LoginIsVisible: boolean;
   private cart: Cart = new Cart();
   private haveAuth: boolean = false;
+  private auth: string;
+  private options: any;
+  private userId: string;
   private user = {
     'email': '',
     'password': ''
@@ -29,14 +32,17 @@ export class NavComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    let auth = this.authenticationService.getAuth();
-    let options = this.authenticationService.getOptions(auth);
-    let userId = this.authenticationService.getUserId();
-    this.cartService.getCart(options, userId).subscribe(
-      (data) => this.cart = data
-    );
-
+    this.auth = this.authenticationService.getAuth();
+    this.options = this.authenticationService.getOptions(this.auth);
+    this.userId = this.authenticationService.getUserId();
     this.haveAuth = this.authenticationService.checkAuth();
+
+    // Get cart details only of login.
+    if (this.haveAuth) {
+      this.cartService.getCart(this.options, this.userId).subscribe(
+        (data) => this.cart = data
+      );
+    }
   }
 
   showLogin() {
@@ -48,7 +54,15 @@ export class NavComponent implements OnInit {
   }
 
   login() {
-    this.authenticationService.login(this.user.email, this.user.password).subscribe();
+    this.authenticationService.login(this.user.email, this.user.password).subscribe(
+      (data) => data.ok ? location.reload() : alert("Something went wrong, please try again.")
+    );
+  }
+
+  logout() {
+    this.authenticationService.logout();
+    this.router.navigate(['']);
+    location.reload();
   }
 
   toWishlist() {

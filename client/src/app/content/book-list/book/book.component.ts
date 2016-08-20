@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router, ActivatedRoute, ROUTER_DIRECTIVES } from '@angular/router';
 
 import { AuthenticationService } from '../../../shared/authentication.service';
@@ -13,10 +13,12 @@ import { Book } from '../../shared/book.model';
   directives: [ROUTER_DIRECTIVES],
   providers: [AuthenticationService, CartService]
 })
-export class BookComponent implements OnInit, OnDestroy {
+export class BookComponent implements OnInit {
   @Input() book: Book;
-  private sub: any;
   private categoryId: number;
+  private auth: string;
+  private options: any;
+  private userId: string;
 
   constructor(
     private authenticationService: AuthenticationService,
@@ -26,13 +28,13 @@ export class BookComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.sub = this.route.params.subscribe(params => {
+    this.auth = this.authenticationService.getAuth();
+    this.options = this.authenticationService.getOptions(this.auth);
+    this.userId = this.authenticationService.getUserId();
+
+    this.route.params.subscribe(params => {
       this.categoryId = +params['categoryId'];
     });
-  }
-
-  ngOnDestroy() {
-    this.sub.unsubscribe();
   }
 
   onSelect(book: Book) {
@@ -41,12 +43,8 @@ export class BookComponent implements OnInit, OnDestroy {
   }
 
   addBookToCart(bookId: string) {
-    let auth = this.authenticationService.getAuth();
-    let options = this.authenticationService.getOptions(auth);
-    let UserId = this.authenticationService.getUserId();
-
-    this.cartService.getCart(options, UserId).subscribe(
-      (data) => this.cartService.addBookToCart(options, data.id, bookId).subscribe(
+    this.cartService.getCart(this.options, this.userId).subscribe(
+      (data) => this.cartService.addBookToCart(this.options, data.id, bookId).subscribe(
         (data) => location.reload()
       )
     );
