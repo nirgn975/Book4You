@@ -50,9 +50,14 @@ export class AuthenticationService {
     return localStorage.getItem('userName');
   }
 
+  getUserId() {
+    return localStorage.getItem('userId');
+  }
+
   logout() {
     localStorage.removeItem('auth');
     localStorage.removeItem('userName');
+    localStorage.removeItem('userId');
   }
 
   checkAuth() {
@@ -66,6 +71,7 @@ export class AuthenticationService {
     if (res.status == 200) {
       localStorage.setItem('auth', auth);
       localStorage.setItem('userName', userName);
+      localStorage.setItem('userId', '46');
     }
   }
 

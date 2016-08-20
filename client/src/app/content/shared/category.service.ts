@@ -37,7 +37,6 @@ export class CategoryService {
     headers.append('Authorization', 'Basic ' + btoa('nirgn:password'));
     let options = new RequestOptions({ headers: headers });
 
-    console.log(categoryId);
     return this.http.delete(environment.baseUrl + 'categories/' + categoryId, options)
         .map((res: Response) => res)
         .catch(this.handleError);

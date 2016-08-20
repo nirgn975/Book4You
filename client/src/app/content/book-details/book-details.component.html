@@ -1,14 +1,16 @@
 <div class="col-sm-12 col-md-8 col-lg-9 thumbnail pull-right">
   <div *ngIf="book">
     <div class="col-sm-8">
+      <span class="glyphicon glyphicon-star-empty" aria-hidden="true" (click)="addBookToWishList(book)"></span>
       <h2>{{ book.title }}</h2>
-      <a class="btn delete-book" (click)="deleteBook()">מחק ספר</a>
+
       <span>ספר מאת: {{ book.author }}</span>
       <p>{{ book.description }}</p>
+      <a class="btn delete-book" (click)="deleteBook()">מחק ספר</a>
     </div>
 
     <div class="col-sm-4 cta">
-      <img src="{{ book.picture }}">
+      <img src="{{ 'data:image/png;base64,' + book.picture }}">
       <div class="price">
         <p>{{ book.price }}₪</p>
       </div>

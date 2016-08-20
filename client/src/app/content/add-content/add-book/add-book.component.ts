@@ -33,7 +33,8 @@ export class AddBookComponent {
           "author": ["", Validators.required],
           "description": ["", Validators.required],
           "price": ["", Validators.required],
-          // "picture": ["", Validators.required],
+          "inventory": ["", Validators.required],
+          "picture": ["", Validators.required],
           "category": ["", Validators.required]
       });
     }
@@ -45,6 +46,23 @@ export class AddBookComponent {
      this.categories = this.categoryService.getCategories(options);
   }
 
+  addImage(event) {
+    let src: string;
+    let file:File = event.srcElement.files[0];
+    let myReader:FileReader = new FileReader();
+    let bookForm = this.bookForm['_value'];
+    myReader.readAsDataURL(file);
+
+    myReader.onloadend = function (loadEvent:any) {
+        src = loadEvent.target.result;
+        bookForm = src;
+        console.log(src);
+    };
+    bookForm = src;
+
+    console.log(this.bookForm['_value']);
+  }
+
   onSubmit(event) {
     event.preventDefault();
     let auth = this.authenticationService.getAuth();
@@ -52,6 +70,9 @@ export class AddBookComponent {
 
     let categoryId = this.utils.getCategoryId(this.bookForm['_value'].category);
     this.bookForm['_value'].category = 'categories/' + categoryId;
+
+    console.log(this.bookForm['_value']);
+
     this.bookService.addNewBook(options, this.bookForm['_value']).subscribe(
       data => this.utils.callback(data)
     );

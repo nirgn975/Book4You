@@ -37,21 +37,31 @@
     </div>
 
     <!-- Picture -->
-    <!-- <div class="form-group">
+    <div class="form-group">
       <div class="col-sm-10">
-        <input type="file" id="picture" formControlName="picture" required>
+        <input type="file" id="picture" (change)="addImage($event)" required>
       </div>
       <label for="picture" class="col-sm-2 control-label">תמונה</label>
-    </div> -->
+    </div>
 
     <!-- Category -->
     <div class="form-group">
       <div class="col-sm-10">
         <select class="form-control" formControlName="category" required>
-          <option *ngFor="let category of categories | async" [value]="category._links.category.href">{{ category.name }}</option>
+          <option *ngFor="let category of categories | async" [value]="category.id">{{ category.name }}</option>
         </select>
       </div>
       <label for="category" class="col-sm-2 control-label">קטגוריה</label>
+    </div>
+
+    <!-- Inventory -->
+    <div class="form-group">
+      <div class="col-sm-10">
+        <div class="input-group" style="direction: ltr; width: 100%;">
+          <input type="number" class="form-control" id="inventory" placeholder="כמות" formControlName="inventory" style="direction: rtl;" required>
+        </div>
+      </div>
+      <label for="price" class="col-sm-2 control-label">מלאי</label>
     </div>
 
     <button type="submit" class="btn btn-default" [disabled]="!bookForm.valid">Submit</button>

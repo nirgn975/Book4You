@@ -1,20 +1,18 @@
 package com.book4you.user;
 
-
 import com.book4you.book.Book;
+import com.book4you.cart.Cart;
 import com.book4you.core.BaseEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
+
 
 @Entity
 @Table(name = "`User`")
@@ -30,6 +28,7 @@ public class User extends BaseEntity {
     private String lastName;
 
     @NotNull
+    @Column(unique = true)
     @Size(min = 3, max = 50)
     private String username;
 
@@ -39,15 +38,13 @@ public class User extends BaseEntity {
     @JsonIgnore
     private String[] roles;
 
-    @OneToMany()
-    private List<Book> wishlist;
+    @OneToMany(fetch = FetchType.EAGER)
+    private List<Book> wishList;
 
-    @OneToMany()
-    private List<Book> cart;
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private Cart cart;
 
-    protected User() {
-        super();
-    }
+    protected User() { super(); }
 
     public User(String firstName, String lastName, String username, String password, String[] roles) {
         this();
@@ -56,8 +53,8 @@ public class User extends BaseEntity {
         this.username = username;
         setPassword(password);
         this.roles = roles;
-        this.wishlist = new ArrayList<>();
-        this.cart = new ArrayList<>();
+        this.wishList = new ArrayList<>();
+        this.cart = new Cart(this);
     }
 
     public String getFirstName() {
@@ -100,11 +97,25 @@ public class User extends BaseEntity {
         this.roles = roles;
     }
 
-    public List<Book> getWishlist() { return wishlist; }
+    public List<Book> getWishList() {
+        return this.wishList;
+    }
 
-    public List<Book> getCart() { return cart; }
+    public void addBookToWishList(Book book) {
+        this.wishList.add(book);
+    }
 
-    public void addBookToWishlist(Book book) { this.wishlist.add(book); }
+    public void removeBookFromWishList(Book book) {
+        this.wishList.remove(book);
+    }
 
-    public void addBookToCart(Book book) { this.cart.add(book); }
+    public Cart getCart() { return cart; }
+
+    public void addBookToCart(Book book) {
+        this.cart.addBook(book);
+    }
+
+    public void removeBookFromCart(Book book) {
+        this.cart.removeBook(book);
+    }
 }
