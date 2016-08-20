@@ -21,6 +21,7 @@ export class Utils {
   callback(data: Response) {
     if (data.ok) {
       this.router.navigate(['']);
+      location.reload();
     } else {
       alert("Something went wrong, please try again.");
     }

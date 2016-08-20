@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { AuthenticationService } from '../../shared/authentication.service';
 import { WishlistService } from '../../wishlist/shared/wishlist.service';
 import { BookService } from '../shared/book.service';
+import { CartService } from '../../cart/shared/cart.service';
 import { Book } from '../shared/book.model';
 
 @Component({
@@ -12,7 +13,7 @@ import { Book } from '../shared/book.model';
   selector: 'bfy-book-details',
   templateUrl: 'book-details.component.html',
   styleUrls: ['book-details.component.css'],
-  providers: [BookService, AuthenticationService, WishlistService]
+  providers: [BookService, AuthenticationService, WishlistService, CartService]
 })
 export class BookDetailsComponent implements OnInit, OnDestroy {
   book: Observable<Book>;
@@ -23,6 +24,7 @@ export class BookDetailsComponent implements OnInit, OnDestroy {
   constructor(
     private wishlistService: WishlistService,
     private authenticationService: AuthenticationService,
+    private cartService: CartService,
     private route: ActivatedRoute,
     private router: Router,
     private bookService: BookService
@@ -73,5 +75,17 @@ export class BookDetailsComponent implements OnInit, OnDestroy {
 
     console.log(book);
     this.bookService.addBookToWishList(options, book).subscribe()
+  }
+
+  addBookToCart(bookId: string) {
+    let auth = this.authenticationService.getAuth();
+    let options = this.authenticationService.getOptions(auth);
+    let UserId = this.authenticationService.getUserId();
+
+    this.cartService.getCart(options, UserId).subscribe(
+      (data) => this.cartService.addBookToCart(options, data.id, bookId).subscribe(
+        (data) => location.reload()
+      )
+    );
   }
 }

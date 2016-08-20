@@ -25,6 +25,13 @@ export class CartService {
       .catch(this.handleError);
   }
 
+  addBookToCart(options, cartId: string, bookId: string) {
+    return this.http.patch(environment.baseUrl + 'carts/' + cartId + '/addToCart/' + bookId, options)
+      .map((res: Response) => res)
+      .catch(this.handleError);
+
+  }
+
   private handleError(error: Response) {
     console.error(error);
     return Observable.throw(error.json().error || 'Server error');
