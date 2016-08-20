@@ -1,4 +1,4 @@
-package com.book4you.wishList;
+package com.book4you.cart;
 
 import com.book4you.book.Book;
 import com.book4you.core.BaseEntity;
@@ -7,24 +7,31 @@ import com.book4you.user.User;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
-public class WishList extends BaseEntity {
 
-    @OneToMany()
+@Entity
+public class Cart extends BaseEntity {
+    @OneToMany
     private List<Book> books;
+
+    @NotNull
+    @Min(0)
+    private int total;
 
     @OneToOne
     private User user;
 
-    protected WishList() {
+    protected Cart() {
         super();
-        this.books = new ArrayList<>();
+        this.total = 0;
+        books = new ArrayList<>();
     }
 
-    public WishList(User user) {
+    public Cart(User user) {
         this();
         this.user = user;
     }
@@ -33,15 +40,17 @@ public class WishList extends BaseEntity {
         return books;
     }
 
-    public User getUser() {
-        return user;
+    public int getTotal() {
+        return total;
     }
 
     public void addBook(Book book) {
-        this.books.add(book);
+        total += book.getPrice();
+        books.add(book);
     }
 
     public void removeBook(Book book) {
-        this.books.remove(book);
+        total -= book.getPrice();
+        books.remove(book);
     }
 }

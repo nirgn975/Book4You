@@ -24,7 +24,8 @@ export class CartComponent implements OnInit {
   ngOnInit() {
     let auth = this.authenticationService.getAuth();
     let options = this.authenticationService.getOptions(auth);
+    let userId = this.authenticationService.getUserId();
 
-    this.cart = this.cartService.getCartUser(options, 46);
+    this.cart = this.cartService.getCartUser(options, userId);
   }
 }

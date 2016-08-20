@@ -3,8 +3,7 @@ package com.book4you.book;
 import com.book4you.category.Category;
 import com.book4you.core.BaseEntity;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -13,7 +12,7 @@ import javax.validation.constraints.Size;
 @Entity
 public class Book extends BaseEntity {
     @NotNull
-    @Size(min = 3, max = 140)
+    @Size(min = 3, max = 225)
     private String title;
 
     @NotNull
@@ -33,18 +32,22 @@ public class Book extends BaseEntity {
     @ManyToOne
     private Category category;
 
+    @NotNull
+    @Min(0)
+    private int inventory;
+
     protected Book() {
         super();
     }
 
-    public Book(String title, String author, String description, int price, byte[] picture) {
+    public Book(String title, String author, String description, int price, byte[] picture, int inventory) {
         this();
         this.title = title;
         this.author = author;
         this.description = description;
         this.price = price;
-
         this.picture = picture;
+        this.inventory = inventory;
     }
 
     public String getTitle() {
@@ -79,16 +82,25 @@ public class Book extends BaseEntity {
         this.price = price;
     }
 
-    public Category getCategory() {
-        return category;
+    public byte[] getPicture() {
+        return picture;
     }
+
+    public void setPicture(byte[] picture) {
+        this.picture = picture;
+    }
+
+    public Category getCategory() { return category; }
 
     public void setCategory(Category category) {
         this.category = category;
     }
 
-    public byte[] getPicture() { return picture; }
+    public int getInventory() {
+        return inventory;
+    }
 
-    public void setPicture(byte[] picture) { this.picture = picture; }
-
+    public void setInventory(int inventory) {
+        this.inventory = inventory;
+    }
 }

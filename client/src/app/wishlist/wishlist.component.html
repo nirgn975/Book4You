@@ -3,17 +3,17 @@
   <div class="col-sm-8">
 
     <!-- Panel -->
-    <div class="panel panel-default" *ngFor="let item of wishlist | async">
+    <div class="panel panel-default" *ngFor="let item of wishList | async">
       <div class="panel-heading">
         <h2 class="panel-title">{{ item.title }}</h2>
       </div>
       <div class="row panel-body">
-        <img class="media-object col-sm-2" src="{{ item.picture }}" alt="book cover">
+        <img class="media-object col-sm-2" src="{{ 'data:image/png;base64,' + item.picture }}" alt="book cover">
 
         <div class="col-sm-9">
           <h3 class="author">{{ item.author }}</h3>
           <p class="description">{{ item.description }}</p>
-          <a class="btn remove-book" (click)="removeBook()">הסר ספר מרשימת המשאלות</a>
+          <a class="btn remove-book" (click)="removeBook(item.id)">הסר ספר מרשימת המשאלות</a>
         </div>
       </div>
     </div>

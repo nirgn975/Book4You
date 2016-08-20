@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 
 import { AuthenticationService } from '../../shared/authentication.service';
+import { WishlistService } from '../../wishlist/shared/wishlist.service';
 import { BookService } from '../shared/book.service';
 import { Book } from '../shared/book.model';
 
@@ -11,7 +12,7 @@ import { Book } from '../shared/book.model';
   selector: 'bfy-book-details',
   templateUrl: 'book-details.component.html',
   styleUrls: ['book-details.component.css'],
-  providers: [BookService, AuthenticationService]
+  providers: [BookService, AuthenticationService, WishlistService]
 })
 export class BookDetailsComponent implements OnInit, OnDestroy {
   book: Observable<Book>;
@@ -20,6 +21,7 @@ export class BookDetailsComponent implements OnInit, OnDestroy {
   private sub: any;
 
   constructor(
+    private wishlistService: WishlistService,
     private authenticationService: AuthenticationService,
     private route: ActivatedRoute,
     private router: Router,
@@ -53,5 +55,23 @@ export class BookDetailsComponent implements OnInit, OnDestroy {
         }
       }
     );
+  }
+
+  addBookToWishList(book) {
+    let auth = this.authenticationService.getAuth();
+    let options = this.authenticationService.getOptions(auth);
+    delete book._links;
+    book.category = "categories/13";
+
+    let foo = {
+      "_embedded": {
+          "books": [
+              book
+          ]
+      }
+  }
+
+    console.log(book);
+    this.bookService.addBookToWishList(options, book).subscribe()
   }
 }
