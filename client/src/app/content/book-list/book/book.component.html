@@ -10,7 +10,7 @@
       <p>{{ book.price }}₪</p>
     </div>
     <div class="btn-action">
-      <button class="btn btn-purchase" (click)="addBookToCart(book.id)">רכישה</button>
+      <button *ngIf="userId" class="btn btn-purchase" (click)="addBookToCart(book.id)">רכישה</button>
       <button class="btn btn-read-more" (click)="onSelect(book)">קרא עוד</button>
     </div>
   </div>

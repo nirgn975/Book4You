@@ -1,12 +1,13 @@
 <div class="col-sm-12 col-md-8 col-lg-9 thumbnail pull-right">
   <div *ngIf="book">
     <div class="col-sm-8">
-      <span class="glyphicon glyphicon-star-empty" aria-hidden="true" (click)="addBookToWishList(book)"></span>
+      <span *ngIf="userId && checkIfInWishList(book.id)" class="glyphicon glyphicon-star" aria-hidden="true"></span>
+      <span *ngIf="userId && !checkIfInWishList(book.id)" class="glyphicon glyphicon-star-empty" aria-hidden="true" (click)="addBookToWishList(book.id)"></span>
       <h2>{{ book.title }}</h2>
 
       <span>ספר מאת: {{ book.author }}</span>
       <p>{{ book.description }}</p>
-      <a class="btn delete-book" (click)="deleteBook()">מחק ספר</a>
+      <a *ngIf="userId" class="btn delete-book" (click)="deleteBook()">מחק ספר</a>
     </div>
 
     <div class="col-sm-4 cta">
@@ -14,7 +15,7 @@
       <div class="price">
         <p>{{ book.price }}₪</p>
       </div>
-      <button class="btn btn-purchase" (click)="addBookToCart(book.id)">
+      <button *ngIf="userId" class="btn btn-purchase" (click)="addBookToCart(book.id)">
         <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
         הוסף לעגלה
       </button>

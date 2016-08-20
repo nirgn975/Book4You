@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -14,12 +14,11 @@ import { Book } from '../shared/book.model';
   directives: [BookComponent],
   providers: [BookService, AuthenticationService]
 })
-export class BookListComponent implements OnInit, OnDestroy {
+export class BookListComponent implements OnInit {
   @Input() categoryName: String;
 
-  books: Observable<Book[]>;
-  errorMessage: String;
-  private sub: any;
+  private books: Observable<Book[]>;
+  private errorMessage: String;
 
   constructor(
     private authenticationService: AuthenticationService,
@@ -32,13 +31,9 @@ export class BookListComponent implements OnInit, OnDestroy {
     let auth = this.authenticationService.getAuth();
     let options = this.authenticationService.getOptions(auth);
 
-    this.sub = this.route.params.subscribe(params => {
+    this.route.params.subscribe(params => {
       let id = +params['categoryId'];
       this.books = this.bookService.getBooksByCategory(options, id);
     });
-  }
-
-  ngOnDestroy() {
-    this.sub.unsubscribe();
   }
 }

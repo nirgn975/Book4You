@@ -25,6 +25,13 @@ export class WishlistService {
       .catch(this.handleError);
   }
 
+  addBookToWishList(options,  userId: string, bookId: string) {
+    console.log(environment.baseUrl + 'users/' + userId + '/wishList/' + bookId);
+    return this.http.patch(environment.baseUrl + 'users/' + userId + '/wishList/' + bookId, options)
+      .map((res: Response) => res)
+      .catch(this.handleError);
+  }
+
   private handleError(error: Response) {
     console.error(error);
     return Observable.throw(error.json().error || 'Server error');

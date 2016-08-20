@@ -3,7 +3,8 @@
   <div id="user-actions" class="row">
     <div class="col-sm-12 col-md-10">
       <a *ngIf="haveAuth" (click)="toWishlist()">רשימת הקניות שלי</a>
-      <a (click)="showLogin()">התחבר</a>
+      <a *ngIf="!haveAuth" (click)="showLogin()">התחבר</a>
+      <a *ngIf="haveAuth" (click)="logout()">התנתק</a>
     </div>
   </div>
 

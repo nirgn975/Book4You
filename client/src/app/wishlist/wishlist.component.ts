@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import { Router } from '@angular/router';
 
 import { AuthenticationService } from '../shared/authentication.service';
 import { WishlistService } from './shared/wishlist.service';
@@ -13,28 +14,32 @@ import { Book } from '../content/shared/book.model';
   providers: [WishlistService, AuthenticationService]
 })
 export class WishlistComponent implements OnInit {
-  wishList: Observable<Book[]>;
+  private wishList: Observable<Book[]>;
+  private auth: string;
+  private options: any;
+  private userId: string;
 
   constructor(
     private authenticationService: AuthenticationService,
-    private wishlistService: WishlistService
+    private wishlistService: WishlistService,
+    private router: Router
   ) { }
 
   ngOnInit() {
-    let auth = this.authenticationService.getAuth();
-    let options = this.authenticationService.getOptions(auth);
-    let userId = this.authenticationService.getUserId();
+    this.auth = this.authenticationService.getAuth();
+    this.options = this.authenticationService.getOptions(this.auth);
+    this.userId = this.authenticationService.getUserId();
 
-    this.wishList = this.wishlistService.getWishList(options, userId);
+    this.wishList = this.wishlistService.getWishList(this.options, this.userId);
   }
 
   removeBook(bookId: string) {
-    let auth = this.authenticationService.getAuth();
-    let options = this.authenticationService.getOptions(auth);
-    let userId = this.authenticationService.getUserId();
-
-    this.wishlistService.removeBookFromWishList(options, userId, bookId).subscribe(
-      (data) => data.ok ? console.log('ok') : alert("Something went wrong, please try again.")
+    this.wishlistService.removeBookFromWishList(this.options, this.userId, bookId).subscribe(
+      (data) => data.ok ? location.reload() : alert("Something went wrong, please try again.")
     );
+  }
+
+  goToBook(bookId: string) {
+    this.router.navigate(['content/books/' + bookId]);
   }
 }
