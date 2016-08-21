@@ -7,9 +7,9 @@ Book4You is a university project for [#20503 - Workshop: Advanced Programming wi
 
 
 ## Our Stack
-* [PostgreSQL 9.4](http://www.postgresql.org/)
+* [PostgreSQL 9.1](http://www.postgresql.org/)
 * [Java 8](https://www.oracle.com/java/)
-* [Spring 1.3.5](https://spring.io/)
+* [Spring 1.3.6](https://spring.io/)
 * [Angular 2](https://angular.io/)
 * [Angular CLI](https://github.com/angular/angular-cli)
 
