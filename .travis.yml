@@ -1,0 +1,26 @@
+sudo: true
+
+language: java
+jdk: oraclejdk8
+services: postgresql
+
+before_script:
+  # Create the database.
+  - psql -c "CREATE DATABASE bookforyou" -U postgres
+  - psql -c "ALTER USER postgres WITH PASSWORD 'postgres'" -U postgres
+
+  # Install the gradle project.
+  - sudo add-apt-repository ppa:cwchien/gradle
+  - sudo apt-get update
+  - sudo apt-get install gradle
+
+  # Build the client.
+
+script:
+  # Run the server project.
+  - cd ./server
+  - java -jar target/book4you-1.0-SNAPSHOT.jar
+
+  # Run the server unit tests.
+
+  # Run the client tests.
