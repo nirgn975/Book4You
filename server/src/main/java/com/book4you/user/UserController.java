@@ -11,6 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
 @BasePathAwareController
 @RequestMapping("users")
 public class UserController {
@@ -50,6 +54,22 @@ public class UserController {
         }
 
         return new ResponseEntity<String>(HttpStatus.OK);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "checkUserAdmin/{userId}", method = RequestMethod.GET)
+    public ResponseEntity checkUserAdmin(@PathVariable("userId") int userId) {
+        // Find the user ROLEs and SET it.
+         Set<String> VALUES = new HashSet<String>(Arrays.asList(
+                 findUser(userId).getRoles()
+        ));
+
+        // Check if the SET has the ADMIN role.
+        if (VALUES.contains("ROLE_ADMIN")) {
+            return new ResponseEntity<String>("Ok", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<String>("No", HttpStatus.OK);
+        }
     }
 
     private Book findBook(int bookId) {
