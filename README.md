@@ -1,5 +1,4 @@
 # Book4You
-===
 
 [![license](https://img.shields.io/badge/license-ISC-blue.svg)](https://github.com/nirgn975/Book4You/blob/master/LICENSE)
 
@@ -16,10 +15,6 @@ Book4You is a university project for [#20503 - Workshop: Advanced Programming wi
 
 
 ## Installation (for development)
-
-How the project will look after installation:
-
-![The project after install](https://github.com/nirgn975/Book4You/blob/master/project_after_installation.png)
 
 ### **Client side:**
 
