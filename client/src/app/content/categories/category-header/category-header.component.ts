@@ -11,7 +11,7 @@ import { AuthenticationService } from '../../../shared/authentication.service';
   providers: [AuthenticationService]
 })
 export class CategoryHeaderComponent implements OnInit {
-  private haveAuth: boolean = false;
+  private isAdmin: boolean = false;
 
   constructor(
     private authenticationService: AuthenticationService,
@@ -19,7 +19,19 @@ export class CategoryHeaderComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.haveAuth = this.authenticationService.checkAuth();
+    if (!this.authenticationService.getUserId()) {
+      return;
+    }
+    
+    this.authenticationService.checkIfAdmin().subscribe(
+      (data) => {
+        if (data == "Ok") {
+          this.isAdmin = true;
+        } else {
+          this.isAdmin = false;
+        }
+      }
+    );
   }
 
   addCategory() {

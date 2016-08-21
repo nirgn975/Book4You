@@ -16,6 +16,7 @@ import { Book } from '../shared/book.model';
   providers: [BookService, AuthenticationService, WishlistService, CartService]
 })
 export class BookDetailsComponent implements OnInit {
+  private isAdmin: boolean = false;
   private book: Observable<Book>;
   private wishList: Book[];
   private errorMessage: String;
@@ -38,27 +39,40 @@ export class BookDetailsComponent implements OnInit {
     this.options = this.authenticationService.getOptions(this.auth);
     this.userId = this.authenticationService.getUserId();
 
-    // Get cart details only of login.
-    if (this.userId) {
-      this.wishlistService.getWishList(this.options, this.userId).subscribe(
-        (data) => {
-          this.wishList = data;
-          this.route.params.subscribe(params => {
-            this.bookId = +params['bookId'];
-            this.bookService.getBookById(this.options, this.bookId).subscribe(
-              (res) => this.book = res
-            );
-          });
-        }
-      );
-    } else {
-      this.route.params.subscribe(params => {
-        this.bookId = +params['bookId'];
-        this.bookService.getBookById(this.options, this.bookId).subscribe(
-          (res) => this.book = res
-        );
-      });
+    // Get cart details only if login.
+    if (!this.userId) {
+      this.getBookData();
+      return;
     }
+
+    this.wishlistService.getWishList(this.options, this.userId).subscribe(
+      (data) => {
+        this.wishList = data;
+        this.getBookData();
+        this.checkIfAdmin();
+      }
+    );
+  }
+
+  getBookData() {
+    this.route.params.subscribe(params => {
+      this.bookId = +params['bookId'];
+      this.bookService.getBookById(this.options, this.bookId).subscribe(
+        (res) => this.book = res
+      );
+    });
+  }
+
+  checkIfAdmin() {
+    this.authenticationService.checkIfAdmin().subscribe(
+      (data) => {
+        if (data == "Ok") {
+          this.isAdmin = true;
+        } else {
+          this.isAdmin = false;
+        }
+      }
+    );
   }
 
   deleteBook() {

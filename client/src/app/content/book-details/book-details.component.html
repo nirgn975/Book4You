@@ -7,7 +7,7 @@
 
       <span>ספר מאת: {{ book.author }}</span>
       <p>{{ book.description }}</p>
-      <a *ngIf="userId" class="btn delete-book" (click)="deleteBook()">מחק ספר</a>
+      <a *ngIf="isAdmin" class="btn delete-book" (click)="deleteBook()">מחק ספר</a>
     </div>
 
     <div class="col-sm-4 cta">

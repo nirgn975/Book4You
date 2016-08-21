@@ -42,6 +42,15 @@ export class AuthenticationService {
     return options;
   }
 
+  checkIfAdmin() {
+    return this.http.get(
+      environment.baseUrl + 'users/checkUserAdmin/' + this.getUserId(),
+      this.getOptions(this.getAuth())
+    )
+      .map((res: Response) => res.json())
+      .catch(this.handleError);
+  }
+
   getAuth() {
     return localStorage.getItem('auth');
   }
