@@ -10,11 +10,18 @@ before_script:
   - psql -c "ALTER USER postgres WITH PASSWORD 'postgres'" -U postgres
 
   # Install the gradle project.
-  - sudo add-apt-repository ppa:cwchien/gradle
+  - sudo add-apt-repository -y ppa:cwchien/gradle
   - sudo apt-get update
-  - sudo apt-get install gradle
+  - sudo apt-get install -y gradle
+  - gradle build
+
+  # Install Node.js for npm and ng-cli.
+  - curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
+  - sudo apt-get install -y nodejs
+  - npm install -g angular-cli
 
   # Build the client.
+  - ng build --target=production --environment=prod
 
 script:
   # Run the server project.
