@@ -18,7 +18,7 @@ before_script:
 script:
   # Run the server project.
   - cd ./server
-  - gradle bootRun&
+  # - gradle bootRun&
 
   # Run the server unit tests.
   - gradle test

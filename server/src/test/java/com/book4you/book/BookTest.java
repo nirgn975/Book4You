@@ -15,6 +15,6 @@ public class BookTest {
     public void getTitle() throws Exception {
         Book book = new Book("Title", "Author", "Description", 10, utils.Image2ByteArray("images/FallingAngel.jpg"), 0);
 
-        assertEquals("Title2", book.getTitle());
+        assertEquals("Title", book.getTitle());
     }
 }
