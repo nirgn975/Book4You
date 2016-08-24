@@ -15,14 +15,6 @@ before_script:
   - sudo apt-get install -y gradle
 
 
-  # Install Node.js for npm and ng-cli.
-  - curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
-  - sudo apt-get install -y nodejs
-  - npm install -g angular-cli
-
-  # Build the client.
-  - ng build --target=production --environment=prod
-
 script:
   # Run the server project.
   - cd ./server
