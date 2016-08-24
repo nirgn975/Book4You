@@ -1,6 +1,6 @@
 # Book4You
 
-[![license](https://img.shields.io/badge/license-ISC-blue.svg)](https://github.com/nirgn975/Book4You/blob/master/LICENSE)
+[![license](https://img.shields.io/badge/license-ISC-blue.svg)](https://github.com/nirgn975/Book4You/blob/master/LICENSE) [![Build Status](https://travis-ci.org/nirgn975/Book4You.svg?branch=master)](https://travis-ci.org/nirgn975/Book4You)
 
 The repo contains the server and client sides of the Book4You project.
 Book4You is a university project for [#20503 - Workshop: Advanced Programming with Java](http://www-e.openu.ac.il/courses/20503.htm) course.

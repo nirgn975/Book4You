@@ -21,5 +21,4 @@ script:
   - gradle bootRun&
 
   # Run the server unit tests.
-
-  # Run the client tests.
+  - gradle test
