@@ -3,6 +3,7 @@ package com.book4you.user;
 import com.book4you.book.Book;
 import com.book4you.cart.Cart;
 import com.book4you.core.BaseEntity;
+import com.book4you.order.Order;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -44,6 +45,9 @@ public class User extends BaseEntity {
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Cart cart;
 
+    @OneToMany
+    private List<Order> orders;
+
     protected User() { super(); }
 
     public User(String firstName, String lastName, String username, String password, String[] roles) {
@@ -55,6 +59,7 @@ public class User extends BaseEntity {
         this.roles = roles;
         this.wishList = new ArrayList<>();
         this.cart = new Cart(this);
+        this.orders = new ArrayList<>();
     }
 
     public String getFirstName() {
@@ -118,4 +123,6 @@ public class User extends BaseEntity {
     public void removeBookFromCart(Book book) {
         this.cart.removeBook(book);
     }
+
+    public List<Order> getOrders() { return orders; }
 }
