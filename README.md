@@ -1,25 +1,20 @@
 # Book4You
-===
 
-[![license](https://img.shields.io/badge/license-ISC-blue.svg)](https://github.com/nirgn975/Book4You/blob/master/LICENSE)
+[![license](https://img.shields.io/badge/license-ISC-blue.svg)](https://github.com/nirgn975/Book4You/blob/master/LICENSE) [![Build Status](https://travis-ci.org/nirgn975/Book4You.svg?branch=master)](https://travis-ci.org/nirgn975/Book4You)
 
 The repo contains the server and client sides of the Book4You project.
 Book4You is a university project for [#20503 - Workshop: Advanced Programming with Java](http://www-e.openu.ac.il/courses/20503.htm) course.
 
 
 ## Our Stack
-* [PostgreSQL 9.4](http://www.postgresql.org/)
+* [PostgreSQL 9.1](http://www.postgresql.org/)
 * [Java 8](https://www.oracle.com/java/)
-* [Spring 1.3.5](https://spring.io/)
+* [Spring 1.3.6](https://spring.io/)
 * [Angular 2](https://angular.io/)
 * [Angular CLI](https://github.com/angular/angular-cli)
 
 
 ## Installation (for development)
-
-How the project will look after installation:
-
-![The project after install](https://github.com/nirgn975/Book4You/blob/master/project_after_installation.png)
 
 ### **Client side:**
 
