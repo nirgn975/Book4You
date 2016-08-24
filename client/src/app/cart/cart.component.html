@@ -1,10 +1,41 @@
 <div class="col-sm-2"></div>
 
-<div id="pay" class="col-sm-5 thumbnail thumbnail-content">
+<div id="pay" class="col-sm-5 thumbnail ">
   <div>
+    <h2>פרטי משלוח</h2>
+    <form class="form-horizontal" [formGroup]="orderForm" (submit)="onSubmitOrder($event)">
 
+      <!-- Full Name -->
+      <div class="form-group">
+        <div class="col-sm-12">
+          <input type="text" class="form-control" id="fullName" placeholder="שם הנעמן" formControlName="fullName" required>
+        </div>
+      </div>
+
+      <!-- Street -->
+      <div class="form-group">
+        <div class="col-sm-12">
+          <input type="text" class="form-control" id="street" placeholder="רחוב" formControlName="street" required>
+        </div>
+      </div>
+
+      <!-- House Number -->
+      <div class="form-group">
+        <div class="col-sm-12">
+          <input type="text" class="form-control" id="houseNumber" placeholder="מספר בית" formControlName="houseNumber" required>
+        </div>
+      </div>
+
+      <!-- Citu -->
+      <div class="form-group">
+        <div class="col-sm-12">
+          <input type="text" class="form-control" id="city" placeholder="עיר" formControlName="city" required>
+        </div>
+      </div>
+
+      <button type="submit" [disabled]="!orderForm.valid">לרכישה באמצעות Paypal</button>
+    </form>
   </div>
-  <button>לרכישה באמצעות Paypal</button>
 </div>
 
 <div class="list-group col-sm-offset-1 col-sm-2">
