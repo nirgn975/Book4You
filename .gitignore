@@ -134,6 +134,7 @@ hs_err_pid*
 ### Spring ###
 target
 server/build/
+server/classes/
 
 
 ### Gradle ###
