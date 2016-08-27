@@ -21,11 +21,21 @@ public class CartController {
     @RequestMapping(value = "{cartId}/addToCart/{bookId}", method = RequestMethod.PATCH)
     public ResponseEntity addToCart(@PathVariable("cartId") int cartId, @PathVariable("bookId") int bookId) {
         try {
-            // Add the book to the Cart.
-            findCart(cartId).addBook(findBook(bookId));
+            // Find cart.
+            Cart myCart = findCart(cartId);
+
+            // Find book.
+            Book b = findBook(bookId);
+
+            // Add the book to the Cart if he has inventory.
+            if (b.getInventory() > 0) {
+                myCart.addBook(b);
+            } else {
+                return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+            }
 
             // Save my cart.
-            cart.save(findCart(cartId));
+            cart.save(myCart);
         } catch (Exception ex) {
             return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
         }
@@ -65,7 +75,7 @@ public class CartController {
                     return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
                 }
             }
-            
+
             // Clear books, totalAmount, and totalItems.
             myCart.getBooks().clear();
             myCart.setTotalAmount(0);

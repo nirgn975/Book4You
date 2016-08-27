@@ -56,8 +56,6 @@ export class CartComponent implements OnInit {
   }
 
   removeBook(bookId: string) {
-    console.log(bookId);
-    console.log(this.cart);
     this.cartService.removeBookFromCart(this.options, this.cart.id, bookId).subscribe(
       (data) => location.reload()
     );
