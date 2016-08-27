@@ -3,10 +3,16 @@ div {
 
   &#pay {
     text-align: center;
+    padding: 0 20rem;
+
+    .form-group {
+      margin-top: 0;
+    }
 
     button {
       width: 40rem;
       padding: 2rem;
+      margin-bottom: 2rem;
       font-size: 2rem;
       border: #fff solid 1px;
       border-radius: 4px;

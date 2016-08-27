@@ -1,5 +1,7 @@
 package com.book4you.core;
 
+import com.book4you.order.Order;
+import com.book4you.order.OrderRepository;
 import com.book4you.utils.Utils;
 import com.book4you.book.Book;
 import com.book4you.book.BookRepository;
@@ -12,6 +14,8 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Component
@@ -19,13 +23,15 @@ public class DatabaseLoader implements ApplicationRunner {
     private final BookRepository books;
     private final CategoryRepository categories;
     private final UserRepository users;
+    private final OrderRepository orders;
     private Utils utils = new Utils();
 
     @Autowired
-    public DatabaseLoader(BookRepository books, CategoryRepository category, UserRepository users) {
+    public DatabaseLoader(BookRepository books, CategoryRepository category, UserRepository users, OrderRepository orders) {
         this.books = books;
         this.categories = category;
         this.users = users;
+        this.orders = orders;
     }
 
     @Override
@@ -282,7 +288,7 @@ public class DatabaseLoader implements ApplicationRunner {
         }
 
 
-        // Save users
+        // Save users.
         User[] dummyUsers = {
                 new User("nir", "galon", "nirgn", "password", new String[] {"ROLE_USER", "ROLE_ADMIN"})
 //                new User("adi", "saar", "adis", "12345", new String[] {"ROLE_USER"})
@@ -298,6 +304,26 @@ public class DatabaseLoader implements ApplicationRunner {
 
             y++;
             users.save(u);
+        }
+
+
+        // Dummy books for orders.
+        List<Book> books = new ArrayList<>();
+        books.add(dummyBooks[0][0]);
+        books.add(dummyBooks[1][0]);
+
+        // Save orders.
+        Order[] dummyOrders = {
+                new Order("nirgn", "full name", "street", 12, "ramat gan", books, 145)
+        };
+
+        int z = 0;
+        for (Order o: dummyOrders) {
+            // Set the user.
+            o.setUser(users.findByUsername(o.getUsername()));
+
+            z++;
+            orders.save(o);
         }
     }
 }

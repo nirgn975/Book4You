@@ -7,6 +7,7 @@
 
       <span>ספר מאת: {{ book.author }}</span>
       <p>{{ book.description }}</p>
+      <h3>מלאי: {{ book.inventory }}</h3>
       <a *ngIf="isAdmin" class="btn delete-book" (click)="deleteBook()">מחק ספר</a>
     </div>
 
@@ -15,7 +16,7 @@
       <div class="price">
         <p>{{ book.price }}₪</p>
       </div>
-      <button *ngIf="userId" class="btn btn-purchase" (click)="addBookToCart(book.id)">
+      <button *ngIf="userId" [disabled]="!book.inventory" class="btn btn-purchase" (click)="addBookToCart(book.id)">
         <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
         הוסף לעגלה
       </button>

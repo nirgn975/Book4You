@@ -25,6 +25,12 @@ export class CartService {
       .catch(this.handleError);
   }
 
+  deleteCart(options, cartId: number) {
+    return this.http.delete(environment.baseUrl + 'carts/' + cartId, options)
+      .map((res: Response) => res)
+      .catch(this.handleError);
+  }
+
   addBookToCart(options, cartId: string, bookId: string) {
     return this.http.patch(environment.baseUrl + 'carts/' + cartId + '/addToCart/' + bookId, options)
       .map((res: Response) => res)
@@ -35,6 +41,18 @@ export class CartService {
     return this.http.patch(environment.baseUrl + 'carts/' + cartId + '/removeFromCart/' + bookId, options)
       .map((res: Response) => res)
       .catch(this.handleError);
+  }
+
+  addNewOrder(options, newOrder: string) {
+    return this.http.post(environment.baseUrl + 'orders/addNewOrder', newOrder, options)
+        .map((res: Response) => res)
+        .catch(this.handleError);
+  }
+
+  getBookCategoryIdByUrl(options, url: string) {
+    return this.http.post(url, options)
+        .map((res: Response) => res)
+        .catch(this.handleError);
   }
 
   private handleError(error: Response) {

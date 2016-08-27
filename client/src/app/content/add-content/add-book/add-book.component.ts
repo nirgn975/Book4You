@@ -26,7 +26,7 @@ export class AddBookComponent {
     private categoryService: CategoryService,
     private bookService: BookService,
     private utils: Utils,
-    fb: FormBuilder
+    private fb: FormBuilder
   ) {
       this.bookForm = fb.group({
           "title": ["", Validators.required],
@@ -70,8 +70,6 @@ export class AddBookComponent {
 
     let categoryId = this.utils.getCategoryId(this.bookForm['_value'].category);
     this.bookForm['_value'].category = 'categories/' + categoryId;
-
-    console.log(this.bookForm['_value']);
 
     this.bookService.addNewBook(options, this.bookForm['_value']).subscribe(
       data => this.utils.callback(data)
