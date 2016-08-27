@@ -49,8 +49,16 @@ public class Cart extends BaseEntity {
         return totalAmount;
     }
 
+    public void setTotalAmount(int totalAmount) {
+        this.totalAmount = totalAmount;
+    }
+
     public int getTotalItems() {
         return totalItems;
+    }
+
+    public void setTotalItems(int totalItems) {
+        this.totalItems = totalItems;
     }
 
     public void addBook(Book book) {
