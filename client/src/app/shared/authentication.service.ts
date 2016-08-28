@@ -19,6 +19,10 @@ export class AuthenticationService {
     } else {
       let options = this.getOptions('Basic ' + btoa(userName + ':' + password));
 
+      this.getUserFromServer(userName, 'Basic ' + btoa(userName + ':' + password)).subscribe(
+        (data) => localStorage.setItem('userId', data._body)
+      );
+
       return this.http.get(environment.baseUrl, options)
         .map((res: Response) => res)
         .do((data) =>
@@ -28,9 +32,17 @@ export class AuthenticationService {
             userName
           )
         )
-        .do((data) => console.log(data))
         .catch(this.handleError);
     }
+  }
+
+  getUserFromServer(userName: string, auth: string) {
+      let options = this.getOptions(auth);
+
+      return this.http.get(environment.baseUrl + 'users/getUserId/' + userName, options)
+        .map((res: Response) => res)
+        .do((data) => console.log(data))
+        .catch(this.handleError);
   }
 
   getOptions(authorization: string) {
@@ -80,7 +92,6 @@ export class AuthenticationService {
     if (res.status == 200) {
       localStorage.setItem('auth', auth);
       localStorage.setItem('userName', userName);
-      localStorage.setItem('userId', '46');
     }
   }
 

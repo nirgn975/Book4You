@@ -72,6 +72,21 @@ public class UserController {
         }
     }
 
+    @ResponseBody
+    @RequestMapping(value = "getUserId/{userName}", method = RequestMethod.GET)
+    public ResponseEntity getUserId(@PathVariable("userName") String userName) {
+        User user;
+
+        try {
+            // Find the user.
+            user = users.findByUsername(userName);
+        } catch (Exception ex) {
+            return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+        }
+
+        return new ResponseEntity<>(user.getId(), HttpStatus.OK);
+    }
+
     private Book findBook(int bookId) {
         Book book = books.findOne(new Long(bookId));
         return book;
