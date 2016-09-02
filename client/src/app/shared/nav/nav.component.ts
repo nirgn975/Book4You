@@ -24,6 +24,7 @@ export class NavComponent implements OnInit {
     'email': '',
     'password': ''
   };
+  private isAdmin: boolean = false;
 
   constructor(
     private authenticationService: AuthenticationService,
@@ -43,6 +44,16 @@ export class NavComponent implements OnInit {
         (data) => this.cart = data
       );
     }
+    
+    this.authenticationService.checkIfAdmin().subscribe(
+      (data) => {
+        if (data == "Ok") {
+          this.isAdmin = true;
+        } else {
+          this.isAdmin = false;
+        }
+      }
+    );
   }
 
   showLogin() {
