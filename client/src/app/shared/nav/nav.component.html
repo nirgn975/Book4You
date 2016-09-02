@@ -4,6 +4,9 @@
     <div class="col-sm-12 col-md-10">
       <a *ngIf="haveAuth" (click)="toWishlist()">רשימת הקניות שלי</a>
       <a *ngIf="!haveAuth" (click)="showLogin()">התחבר</a>
+      <a *ngIf="isAdmin" class="btn add-category" (click)="addCategory()">הוסף קטגוריה</a>
+      <a *ngIf="isAdmin" class="btn add-book" (click)="addBook()">הוסף ספר</a>
+      <a *ngIf="isAdmin" class="btn delete-category" (click)="deleteCategory()">מחק קטגוריה</a>
       <a *ngIf="haveAuth" (click)="logout()">התנתק</a>
     </div>
   </div>

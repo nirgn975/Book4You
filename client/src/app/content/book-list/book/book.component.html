@@ -1,13 +1,10 @@
 <div class="col-sm-12 col-md-4 col-lg-3 thumbnail pull-right">
-  <div>
-    <img src="{{ book.cover_image }}">
-  </div>
   <div class="thumbnail-content">
     <h3>{{ book.title }}</h3>
     <img src="{{ 'data:image/png;base64,' + book.picture }}">
     <span>{{ book.author }}</span>
     <div class="price">
-      <p>{{ book.price }}₪</p>
+      <p>מחיר: ₪{{ book.price }}</p>
     </div>
     <div class="btn-action">
       <button *ngIf="userId" class="btn btn-purchase" (click)="addBookToCart(book.id)">רכישה</button>
