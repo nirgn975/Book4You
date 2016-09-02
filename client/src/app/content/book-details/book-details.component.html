@@ -7,19 +7,19 @@
 
       <span>ספר מאת: {{ book.author }}</span>
       <p>{{ book.description }}</p>
-      <h3>מלאי: {{ book.inventory }}</h3>
-      <a *ngIf="isAdmin" class="btn delete-book" (click)="deleteBook()">מחק ספר</a>
+      <p class="bold">מלאי: {{ book.inventory }}</p>
     </div>
 
     <div class="col-sm-4 cta">
       <img src="{{ 'data:image/png;base64,' + book.picture }}">
       <div class="price">
-        <p>{{ book.price }}₪</p>
+        <p>מחיר: ₪{{ book.price }}</p>
       </div>
       <button *ngIf="userId" [disabled]="!book.inventory" class="btn btn-purchase" (click)="addBookToCart(book.id)">
         <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
         הוסף לעגלה
       </button>
+      <a *ngIf="isAdmin" class="btn delete-book" (click)="deleteBook()">מחק ספר</a>
     </div>
   </div>
 </div>
