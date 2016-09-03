@@ -20,10 +20,6 @@ export const ContentRoutes: RouterConfig = [
         path: 'books/:bookId',
         component: BookDetailsComponent
       },
-      // {
-      //   path: 'addContent',
-      //   component: AddContentComponent
-      // },
       ...AddContentRoutes
     ]
   },

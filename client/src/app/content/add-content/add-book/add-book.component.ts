@@ -34,7 +34,7 @@ export class AddBookComponent {
           "description": ["", Validators.required],
           "price": ["", Validators.required],
           "inventory": ["", Validators.required],
-          "picture": ["", Validators.required],
+          // "picture": ["", Validators.required],
           "category": ["", Validators.required]
       });
     }
