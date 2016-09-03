@@ -44,7 +44,7 @@ export class NavComponent implements OnInit {
         (data) => this.cart = data
       );
     }
-    
+
     this.authenticationService.checkIfAdmin().subscribe(
       (data) => {
         if (data == "Ok") {
@@ -87,4 +87,16 @@ export class NavComponent implements OnInit {
   toRoot() {
     this.router.navigate(['']);
   }
+
+  addCategory() {
+    this.router.navigate(['/content/addContent/addCategory']);
+  };
+
+  addBook() {
+    this.router.navigate(['/content/addContent/addBook']);
+  };
+
+  deleteCategory() {
+    this.router.navigate(['/content/addContent/deleteCategory']);
+  };
 }
