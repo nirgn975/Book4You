@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Router } from '@angular/router';
+import { FormGroup, Validators, FormBuilder,
+  REACTIVE_FORM_DIRECTIVES } from '@angular/forms';
 
 import { AuthenticationService } from '../authentication.service';
 import { CartService } from '../../cart/shared/cart.service';
+import { NavService } from './nav.service';
 import { Cart } from '../../cart/shared/cart.model';
 
 @Component({
@@ -11,7 +14,8 @@ import { Cart } from '../../cart/shared/cart.model';
   selector: 'bfy-nav',
   templateUrl: 'nav.component.html',
   styleUrls: ['nav.component.css'],
-  providers: [AuthenticationService, CartService]
+  directives: [REACTIVE_FORM_DIRECTIVES],
+  providers: [AuthenticationService, CartService, NavService]
 })
 export class NavComponent implements OnInit {
   private LoginIsVisible: boolean;
@@ -25,12 +29,23 @@ export class NavComponent implements OnInit {
     'password': ''
   };
   private isAdmin: boolean = false;
+  private modalStatus: String = 'signin';
+  private newUserForm: FormGroup;
 
   constructor(
     private authenticationService: AuthenticationService,
     private cartService: CartService,
-    private router: Router
-  ) {}
+    private navService: NavService,
+    private router: Router,
+    private fb: FormBuilder
+  ) {
+    this.newUserForm = fb.group({
+        "username": ["", Validators.required],
+        "password": ["", Validators.required],
+        "firstName": ["", Validators.required],
+        "lastName": ["", Validators.required]
+    });
+  }
 
   ngOnInit() {
     this.auth = this.authenticationService.getAuth();
@@ -99,4 +114,16 @@ export class NavComponent implements OnInit {
   deleteCategory() {
     this.router.navigate(['/content/addContent/deleteCategory']);
   };
+
+  registerNewUser() {
+    this.modalStatus = 'register';
+  }
+
+  onSubmit(event) {
+    event.preventDefault();
+    this.newUserForm['_value'].rols = ["ROLE_USER", "ROLE_ADMIN"]
+    this.navService.addNewUser(this.options, this.newUserForm['_value']).subscribe(
+      (data) => (data.ok) ? location.reload() : ''
+    );
+  }
 }
