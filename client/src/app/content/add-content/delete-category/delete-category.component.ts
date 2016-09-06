@@ -46,7 +46,6 @@ export class DeleteCategoryComponent implements OnInit {
     let auth = this.authenticationService.getAuth();
     let options = this.authenticationService.getOptions(auth);
 
-
     let categoryId = this.utils.getCategoryId(this.delCategoryForm['_value'].category);
     this.categoryService.deleteCategory(categoryId).subscribe(
       (data) => this.utils.callback(data)
